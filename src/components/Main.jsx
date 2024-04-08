@@ -13,7 +13,10 @@ function Main() {
 	const [addNewProjectFormState, setAddNewProjectFormState] = useState(false)
 
 	function addNewTask(task) {
-		setTasks((prev) => ({ ...prev, tasks: [...prev.tasks, task] }))
+		setTasks((prev) => ({
+			...prev,
+			tasks: [...prev.tasks, { id: Date.now(), ...task }],
+		}))
 	}
 
 	function editTask(id, updatedTask) {
@@ -21,7 +24,7 @@ function Main() {
 			return {
 				...prev,
 				tasks: prev.tasks.map((prevTask) =>
-					prevTask.id === id ? updatedTask : prevTask
+					prevTask.id === id ? { ...prevTask, ...updatedTask } : prevTask
 				),
 			}
 		})
@@ -73,6 +76,7 @@ function Main() {
 		setTasks((prev) => {
 			return {
 				...prev,
+				tasks: prev.tasks.filter((task) => task.project !== name),
 				projects: prev.projects.filter((prevName) => prevName !== name),
 			}
 		})

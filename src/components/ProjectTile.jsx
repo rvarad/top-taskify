@@ -7,6 +7,13 @@ function ProjectTile({ project, changeCurrentTab }) {
 	const [newName, setNewName] = useState(project)
 	const [renameProjectState, setRenameProjectState] = useState(false)
 
+	function handleDeleteProject() {
+		// deleteProject(project)
+		changeCurrentTab((prev) => {
+			console.log("prev", prev)
+			return "All Tasks"
+		})
+	}
 	return (
 		<div
 			className="project-tile"
@@ -27,14 +34,7 @@ function ProjectTile({ project, changeCurrentTab }) {
 					<button onClick={() => setRenameProjectState(true)}>
 						Rename Project
 					</button>
-					<button
-						onClick={() => {
-							// deleteProject(project)
-							changeCurrentTab("All Tasks")
-						}}
-					>
-						Delete Project
-					</button>
+					<button onClick={handleDeleteProject}>Delete Project</button>
 				</div>
 			)}
 			{currentTab === project && renameProjectState && (

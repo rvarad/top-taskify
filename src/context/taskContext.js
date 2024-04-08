@@ -3,13 +3,13 @@ import { createContext, useContext } from "react";
 const TaskContext = createContext({
 	tasks: {},
 	currentTab: "",
-	addNewTask: () => { },
-	editTask: () => { },
-	deleteTask: () => { },
-	toggleTaskCompleted: () => { },
-	addNewProject: () => { },
-	renameProject: () => { },
-	deleteProject: () => { },
+	addNewTask: (task) => { },
+	editTask: (id, updatedTask) => { },
+	deleteTask: (id) => { },
+	toggleTaskCompleted: (id) => { },
+	addNewProject: (project) => { },
+	renameProject: (originalName, newName) => { },
+	deleteProject: (name) => { },
 })
 
 const TaskContextProvider = TaskContext.Provider
