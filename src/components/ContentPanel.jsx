@@ -31,7 +31,7 @@ function ContentPanel({ currentTab }) {
 		)
 	})
 
-	console.log(tasks)
+	// console.log(tasks)
 
 	return (
 		<div

@@ -98,6 +98,11 @@ function Main() {
 		)
 	})
 
+	useEffect(() => {
+		localStorage.setItem("tasks", JSON.stringify(tasks))
+		console.log(tasks)
+	}, [tasks])
+
 	console.log(currentTab)
 
 	return (
