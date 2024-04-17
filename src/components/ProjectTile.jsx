@@ -8,11 +8,8 @@ function ProjectTile({ project, changeCurrentTab }) {
 	const [renameProjectState, setRenameProjectState] = useState(false)
 
 	function handleDeleteProject() {
-		// deleteProject(project)
-		changeCurrentTab((prev) => {
-			console.log("prev", prev)
-			return "All Tasks"
-		})
+		deleteProject(project)
+		// changeCurrentTab("All Tasks")
 	}
 	return (
 		<div

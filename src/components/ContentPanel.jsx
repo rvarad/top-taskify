@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { useState } from "react"
 import { useTaskContext } from "../context/taskContext"
 import TaskTile from "./TaskTile"
@@ -11,9 +12,41 @@ function ContentPanel({ currentTab }) {
 	const [selectedTask, setSelectedTask] = useState(null)
 
 	function generateTaskList(tab) {
+		const today = new Date()
 		switch (tab) {
 			case "All Tasks":
 				return tasks.tasks
+
+			case "Today":
+				return tasks.tasks.filter((task) => {
+					const dueDate = new Date(task.dueDate)
+					return (
+						dueDate.getDate() === today.getDate() &&
+						dueDate.getMonth() === today.getMonth() &&
+						dueDate.getFullYear() === today.getFullYear()
+					)
+				})
+
+			case "This Week":
+				const weekStart = new Date(
+					today.getFullYear(),
+					today.getMonth(),
+					today.getDate() - today.getDay()
+				)
+				const weekEnd = new Date(
+					weekStart.getFullYear(),
+					weekStart.getMonth(),
+					weekStart.getDate() + 6
+				)
+				console.log(weekStart, weekEnd)
+				return tasks.tasks.filter(
+					(task) =>
+						weekStart <= new Date(task.dueDate) &&
+						new Date(task.dueDate) <= weekEnd
+				)
+
+			case "Important":
+				return tasks.tasks.filter((task) => task.important === true)
 
 			default:
 				return tasks.tasks.filter((task) => task.project === tab)

@@ -3,6 +3,7 @@ import { TaskContextProvider } from "../context/taskContext"
 import { tasksData as initialTasks } from "../initialData"
 import ProjectTile from "./ProjectTile"
 import ContentPanel from "./ContentPanel"
+import { ThemeProvider } from "styled-components"
 
 function Main() {
 	const [tasks, setTasks] = useState(
@@ -46,6 +47,19 @@ function Main() {
 				tasks: prev.tasks.map((prevTask) =>
 					prevTask.id === id
 						? { ...prevTask, completed: !prevTask.completed }
+						: prevTask
+				),
+			}
+		})
+	}
+
+	function toggleTaskImportant(id) {
+		setTasks((prev) => {
+			return {
+				...prev,
+				tasks: prev.tasks.map((prevTask) =>
+					prevTask.id === id
+						? { ...prevTask, important: !prevTask.important }
 						: prevTask
 				),
 			}
@@ -99,6 +113,10 @@ function Main() {
 	})
 
 	useEffect(() => {
+		changeCurrentTab("All Tasks")
+	}, [tasks.projects.length])
+
+	useEffect(() => {
 		localStorage.setItem("tasks", JSON.stringify(tasks))
 		console.log(tasks)
 	}, [tasks])
@@ -106,81 +124,93 @@ function Main() {
 	console.log(currentTab)
 
 	return (
-		<TaskContextProvider
-			value={{
-				tasks,
-				currentTab,
-				addNewTask,
-				editTask,
-				deleteTask,
-				toggleTaskCompleted,
-				addNewProject,
-				renameProject,
-				deleteProject,
-			}}
-		>
-			<nav className="navbar">
-				<section className="home">
-					<h2>Home</h2>
-					<div
-						className="tab-btn current"
-						data-tab-name="All Tasks"
-						onClick={() => changeCurrentTab("All Tasks")}
-					>
-						All Tasks
-					</div>
-					<div
-						className="tab-btn"
-						data-tab-name="Today"
-					>
-						Today
-					</div>
-					<div
-						className="tab-btn"
-						data-tab-name="This Week"
-					>
-						This Week
-					</div>
-				</section>
-				<section className="projects">
-					<h2>Projects</h2>
-					<button
-						id="addNewProjectBtn"
-						onClick={() => setAddNewProjectFormState(true)}
-					>
-						Add New Project
-					</button>
-					{addNewProjectFormState && (
-						<form
-							onSubmit={() => {
-								addNewProject(newProjectName)
-								setAddNewProjectFormState(false)
-								setNewProjectName("")
-								changeCurrentTab(newProjectName)
-							}}
+		<ThemeProvider>
+			<TaskContextProvider
+				value={{
+					tasks,
+					currentTab,
+					addNewTask,
+					editTask,
+					deleteTask,
+					toggleTaskCompleted,
+					toggleTaskImportant,
+					addNewProject,
+					renameProject,
+					deleteProject,
+				}}
+			>
+				<nav className="navbar">
+					<section className="home">
+						<h2>Home</h2>
+						<div
+							className="tab-btn current"
+							data-tab-name="All Tasks"
+							onClick={() => changeCurrentTab("All Tasks")}
 						>
-							<input
-								type="text"
-								placeholder="Enter project name"
-								value={newProjectName}
-								onChange={(e) => setNewProjectName(e.target.value)}
-							/>
-							<button>Add</button>
-							<button
-								onClick={() => {
+							All Tasks
+						</div>
+						<div
+							className="tab-btn"
+							data-tab-name="Today"
+							onClick={() => changeCurrentTab("Today")}
+						>
+							Today
+						</div>
+						<div
+							className="tab-btn"
+							data-tab-name="This Week"
+							onClick={() => changeCurrentTab("This Week")}
+						>
+							This Week
+						</div>
+						<div
+							className="tab-btn"
+							data-tab-name="Important"
+							onClick={() => changeCurrentTab("Important")}
+						>
+							Important
+						</div>
+					</section>
+					<section className="projects">
+						<h2>Projects</h2>
+						<button
+							id="addNewProjectBtn"
+							onClick={() => setAddNewProjectFormState(true)}
+						>
+							Add New Project
+						</button>
+						{addNewProjectFormState && (
+							<form
+								onSubmit={() => {
+									addNewProject(newProjectName)
 									setAddNewProjectFormState(false)
 									setNewProjectName("")
+									changeCurrentTab(newProjectName)
 								}}
 							>
-								Cancel
-							</button>
-						</form>
-					)}
-					<div className="project-list">{projectListElements}</div>
-				</section>
-			</nav>
-			<ContentPanel currentTab={currentTab} />
-		</TaskContextProvider>
+								<input
+									type="text"
+									placeholder="Enter project name"
+									value={newProjectName}
+									onChange={(e) => setNewProjectName(e.target.value)}
+								/>
+								<button>Add</button>
+								<button
+									onClick={() => {
+										setAddNewProjectFormState(false)
+										setNewProjectName("")
+									}}
+								>
+									Cancel
+								</button>
+							</form>
+						)}
+						<div className="project-list">{projectListElements}</div>
+					</section>
+				</nav>
+				<ContentPanel currentTab={currentTab} />
+			</TaskContextProvider>
+		</ThemeProvider>
 	)
 }
 

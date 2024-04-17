@@ -7,6 +7,7 @@ const TaskContext = createContext({
 	editTask: (id, updatedTask) => { },
 	deleteTask: (id) => { },
 	toggleTaskCompleted: (id) => { },
+	toggleTaskImportant: (id) => { },
 	addNewProject: (project) => { },
 	renameProject: (originalName, newName) => { },
 	deleteProject: (name) => { },
