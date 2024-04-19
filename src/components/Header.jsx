@@ -1,7 +1,12 @@
 function Header() {
 	return (
 		<header>
-			<span>Taskify</span>
+			<div className="logo">
+				<div className="logo-text">
+					<span>Taskify</span>
+				</div>
+			</div>
+			<div className="theme-toggle"></div>
 		</header>
 	)
 }

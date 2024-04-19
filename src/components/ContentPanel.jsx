@@ -83,7 +83,6 @@ function ContentPanel({ currentTab }) {
 				)}
 			</div>
 			<div id="overlay">
-				{/* {overlayState === "new task" ? <AddNewTaskForm addNewTask={addNewTask} /> : null} */}
 				{(() => {
 					switch (overlayState) {
 						case "new task":
