@@ -37,7 +37,7 @@ const GlobalStyles = createGlobalStyle`
 }
 
 & .main .navbar {
-  width: 35%;
+  width: 25%;
   height: 100%;
   padding: 1.5rem 1rem;
   display: flex;
@@ -50,7 +50,7 @@ const GlobalStyles = createGlobalStyle`
 
 & .main .navbar .home {
   width: 100%;
-  /* height: 43%; */
+  height: 50%;
   display: flex;
   flex-direction: column;
 }
@@ -84,7 +84,14 @@ const GlobalStyles = createGlobalStyle`
 
 & .main .navbar .projects {
   width: 100%;
-  /* height: 57%; */
+  height: 50%;
+  overflow-y: scroll;
+}
+
+& .main .navbar .projects h2 {
+  position: sticky;
+  top: 0;
+  background-color: rgb(254, 252, 254);
 }
 
 & .main .navbar .projects #addNewProjectBtn {
@@ -93,17 +100,55 @@ const GlobalStyles = createGlobalStyle`
   justify-content: flex-start;
 }
 
-& .main .navbar .projects .project-tile {
+& .main .navbar .projects .add-new-project-form {
+  margin-top: .1rem;
+  padding: 0.25rem;
+  width: 100%;
+  display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  /* border: 1px solid black; */
 }
 
-& .main .content-panel {
+& .main .navbar .projects .add-new-project-form input {
+  padding: 0.5rem;
+  width: 100%;
+  font-size: 1rem;
+}
+
+& .main .navbar .projects .add-new-project-form .add-new-project-form-buttons {
+  padding: .3rem .5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+& .main .navbar .projects .add-new-project-form .add-new-project-form-buttons button {
+  width: 15%;
+  background-color: transparent;
+  border: none;
+}
+
+& .main .navbar .projects .add-new-project-form .add-new-project-form-buttons button svg {
+  width: 100%;
+}
+
+& .main .navbar .projects .add-new-project-form .add-new-project-form-buttons #addNewProjectForm_inputSubmitBtn {
+  fill: green;
+}
+
+& .main .navbar .projects .add-new-project-form .add-new-project-form-buttons #addNewProjectForm_inputCancelBtn {
+  fill: red;
+}
+
+/* & .main .content-panel {
   width: 65%;
   height: 100%;
   background-color: rgb(236, 236, 236);
   overflow: scroll;
-}
+} */
 
 & footer {
   height: 8%;  
