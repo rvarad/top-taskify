@@ -3,9 +3,8 @@ import { useState } from "react"
 import { useTaskContext } from "../../context/taskContext"
 import TaskTile from "../TaskTile/TaskTile"
 import TaskDetails from "../TaskDetails/TaskDetails"
-import EditTaskForm from "../EditTaskForm"
-import AddNewTaskForm from "../AddNewTaskForm/AddNewTaskForm"
 import StyledContentPanel from "./ContentPanel.styled"
+import TaskForm from "../TaskForm/TaskForm"
 
 function ContentPanel({ currentTab }) {
 	const { tasks } = useTaskContext()
@@ -102,7 +101,7 @@ function ContentPanel({ currentTab }) {
 				{(() => {
 					switch (overlayState) {
 						case "new task":
-							return <AddNewTaskForm setOverlayState={setOverlayState} />
+							return <TaskForm setOverlayState={setOverlayState} />
 
 						case "display task":
 							return (
@@ -114,7 +113,7 @@ function ContentPanel({ currentTab }) {
 
 						case "edit task":
 							return (
-								<EditTaskForm
+								<TaskForm
 									task={selectedTask}
 									setOverlayState={setOverlayState}
 								/>

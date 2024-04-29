@@ -9,8 +9,8 @@ flex-direction: row;
 align-items: flex-start;
 justify-content: space-between;
 font-size: 1.1rem;
-background-color: #0000008f;
-color: rgb(236, 236, 236);
+background-color: #fffefece;
+color: rgb(22, 22, 22);
 border-radius: 1.5rem;
 
 & .task-details-popup_content {
