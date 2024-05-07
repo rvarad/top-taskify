@@ -9,7 +9,8 @@ justify-content: flex-start;
 align-items: center;
 width: 75%;
 height: 100%;
-background-color: rgb(236, 236, 236);
+background-color: var(--bg-color-2);
+/* background-color: #192734; */
 
 & .current-tab-heading {
   padding: 1.5rem;
@@ -19,7 +20,7 @@ background-color: rgb(236, 236, 236);
   display: flex;
   align-items: center;
   text-align: left;
-  background-color: #2abd67;
+  background-color: var(--accent-color);
 }
 
 & .current-tab-heading span {
@@ -34,16 +35,21 @@ background-color: rgb(236, 236, 236);
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  color: var(--text-color-1);
   cursor: pointer;
 }
 
 & #addNewTaskBtn:hover {
-  background-color: rgb(254, 252, 254);
+  background-color: var(--bg-color-1);
 }
 
 & #addNewTaskBtn svg {
   width: 2rem;
   margin-right: .5rem;
+}
+
+& #addNewTaskBtn svg path {
+  fill: var(--text-color-1);
 }
 
 & #addNewTaskBtn span {
@@ -70,8 +76,8 @@ background-color: rgb(236, 236, 236);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.418);
-  box-shadow: inset rgba(0, 0, 0, 0.74) 1px 1px 40px 0px;
+  background-color: var(--bg-color-4);
+  box-shadow: inset var(--shadow-color-1) 1px 1px 40px 0px;
 }
 `
 

@@ -10,8 +10,9 @@ flex-direction: column;
 align-items: flex-start;
 justify-content: space-between;
 font-size: 1.1rem;
-background-color: #fffefece;
-color: rgb(22, 22, 22);
+background-color: var(--bg-color-1);
+/* color: rgb(22, 22, 22); */
+color: var(--text-color-1);
 border-radius: 1.5rem;
 
 & .input-wrapper {
@@ -42,8 +43,8 @@ border-radius: 1.5rem;
   width: 100%;
   font-size: 1.1rem;
   background-color: transparent;
-  border: 1px solid rgb(22, 22, 22);
-  color: rgb(22, 22, 22);
+  border: 1px solid var(--text-color-1);
+  color: var(--text-color-1);
 }
 
 & .task-form_input-details-wrapper {
@@ -65,7 +66,7 @@ border-radius: 1.5rem;
 
 & #taskForm_inputDueDate {
   width: auto;
-  color: rgb(22, 22, 22);
+  color: var(--text-color-1);
 }
 
 & .input-wrapper.task-form_input-priority-wrapper{

@@ -6,28 +6,32 @@ display: flex;
 flex-direction: row;
 align-items: center;
 
-& svg {
+& svg.drag-icon {
   flex-shrink: 0;
+}
+
+& svg.drag-icon path {
+  fill: var(--text-color-1);
 }
 
 & .project-info {
   padding: 0.25rem;
   /* width: 75%; */
   /* min-height: 100%; */
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
 
 & .project-info input {
-  color: rgb(55, 73, 88);
+  color: var(--text-color-1);
   padding: 0.25rem;
   width: 100%;
   font-size: 1.12rem;
   border: none;
   background-color: transparent;
-  border: ${({ renameProjectState }) => (renameProjectState ? "1px solid black" : "none")};
+  /* border: ${({ renameProjectState }) => (renameProjectState ? "1px solid black" : "none")}; */
   cursor: pointer;
 }
 
@@ -42,20 +46,28 @@ align-items: center;
 
 & .project-info .project-options button {
   width: 25%;
-  color: rgb(55, 73, 88);
+  color: var(--text-color-1);
   background-color: transparent;
-  border: none;  
+  border: none;
 }
 
 & .project-info .project-options button svg {
   width: 60%;
 }
 
+& .project-info .project-options button#renameProjectBtn svg path, .project-info .project-options button#deleteProjectBtn svg path {
+  stroke: var(--text-color-1);
+}
+
 & .project-info .project-options button#submitRenamedProjectBtn svg {
+  stroke-width: 1px;
+  stroke: var(--text-color-1);
   fill: green;
 }
 
 & .project-info .project-options button#cancelRenamedProjectBtn svg {
+  stroke-width: 1px;
+  stroke: var(--text-color-1);
   fill: red;
 }
 

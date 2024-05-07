@@ -7,8 +7,18 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 }
 
-/* body {
-} */
+:root {
+  --bg-color-1: ${({ theme }) => theme["--bg-color-1"]};
+  --bg-color-2: ${({ theme }) => theme["--bg-color-2"]};
+  --bg-color-3: ${({ theme }) => theme["--bg-color-3"]};
+  --bg-color-4: ${({ theme }) => theme["--bg-color-4"]};
+  --shadow-color-1: ${({ theme }) => theme["--shadow-color-1"]};
+  /* --bg-color-onHover-1: rgb(243, 241, 243);
+  --bg-colo-onHover-2: rgb(235, 234, 234); */
+  --text-color-1: ${({ theme }) => theme["--text-color-1"]};
+  --text-color-2: ${({ theme }) => theme["--text-color-2"]};
+  --accent-color: ${({ theme }) => theme["--accent-color"]};
+}
 
 & #root {
   display: flex;
@@ -19,135 +29,8 @@ const GlobalStyles = createGlobalStyle`
   width: 100vw;
 }
 
-& header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width : 100%;
-  height: 12%;
-  border-bottom: 1px solid rgb(42, 189, 103);
-}
-
-& .main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height:80%;
-  width : 100%;
-}
-
-& .main .navbar {
-  width: 25%;
-  height: 100%;
-  padding: 1.5rem 1rem;
-  display: flex;
-  flex-direction: column;
-
-  background-color: rgb(254, 252, 254);
-  color: rgb(55, 73, 88);
-  border-right: 1px solid rgb(42, 189, 103);
-}
-
-& .main .navbar .home {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-}
-
-& .main .navbar .home h2, .main .navbar .projects h2 {
-  padding-bottom: 0.6rem;
-  border-bottom: solid 2px rgb(55, 73, 88);
-}
-
-& .navbar .nav-btn {
-  margin: 0.25rem 0;
-  padding: 0.3rem;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 1.12rem;
-  color: rgb(55, 73, 88);
-  cursor: pointer;
-}
-
-& .navbar .nav-btn:hover {
-  background-color: rgb(236, 236, 236);
-}
-
-& .navbar .nav-btn svg  {
-  width: 2rem;
-  margin-right: 0.5rem;
-}
-
-& .main .navbar .projects {
-  width: 100%;
-  height: 50%;
-  overflow-y: scroll;
-}
-
-& .main .navbar .projects h2 {
-  position: sticky;
-  top: 0;
-  background-color: rgb(254, 252, 254);
-}
-
-& .main .navbar .projects #addNewProjectBtn {
-  margin: 0.5rem 0 0.4rem 0;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-& .main .navbar .projects .add-new-project-form {
-  margin-top: .1rem;
-  padding: 0.25rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* border: 1px solid black; */
-}
-
-& .main .navbar .projects .add-new-project-form input {
-  padding: 0.5rem;
-  width: 100%;
-  font-size: 1rem;
-}
-
-& .main .navbar .projects .add-new-project-form .add-new-project-form-buttons {
-  padding: .3rem .5rem;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-& .main .navbar .projects .add-new-project-form .add-new-project-form-buttons button {
-  width: 15%;
-  background-color: transparent;
-  border: none;
-}
-
-& .main .navbar .projects .add-new-project-form .add-new-project-form-buttons button svg {
-  width: 100%;
-}
-
-& .main .navbar .projects .add-new-project-form .add-new-project-form-buttons #addNewProjectForm_inputSubmitBtn {
-  fill: green;
-}
-
-& .main .navbar .projects .add-new-project-form .add-new-project-form-buttons #addNewProjectForm_inputCancelBtn {
-  fill: red;
-}
-
-/* & .main .content-panel {
-  width: 65%;
-  height: 100%;
-  background-color: rgb(236, 236, 236);
-  overflow: scroll;
+/* & .task-tile:hover {
+  background-color: var(--bg-color-1);
 } */
 
 & footer {

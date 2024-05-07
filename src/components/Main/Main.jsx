@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { TaskContextProvider } from "../context/taskContext"
-import { tasksData as initialTasks } from "../initialData"
-import ProjectTile from "./ProjectTile/ProjectTile"
-import ContentPanel from "./contentPanel/ContentPanel"
+import { TaskContextProvider } from "../../context/taskContext"
+import { tasksData as initialTasks } from "../../initialData"
+import ProjectTile from "../ProjectTile/ProjectTile"
+import ContentPanel from "../contentPanel/ContentPanel"
+import StyledMain from "./Main.styled"
 
 function Main() {
 	const [tasks, setTasks] = useState(
@@ -144,12 +145,12 @@ function Main() {
 				deleteProject,
 			}}
 		>
-			<div className="main">
+			<StyledMain className="main">
 				<nav className="navbar">
 					<section className="home">
 						<h2>Home</h2>
 						<div
-							className="nav-btn current"
+							className={`nav-btn ${currentTab === "All Tasks" && "active"}`}
 							data-tab-name="All Tasks"
 							onClick={() => changeCurrentTab("All Tasks")}
 						>
@@ -230,7 +231,7 @@ function Main() {
 							<span>All Tasks</span>
 						</div>
 						<div
-							className="nav-btn"
+							className={`nav-btn ${currentTab === "Today" && "active"}`}
 							data-tab-name="Today"
 							onClick={() => changeCurrentTab("Today")}
 						>
@@ -341,7 +342,7 @@ function Main() {
 							<span>Today</span>
 						</div>
 						<div
-							className="nav-btn"
+							className={`nav-btn ${currentTab === "This Week" && "active"}`}
 							data-tab-name="This Week"
 							onClick={() => changeCurrentTab("This Week")}
 						>
@@ -374,7 +375,7 @@ function Main() {
 							<span>This Week</span>
 						</div>
 						<div
-							className="nav-btn"
+							className={`nav-btn ${currentTab === "Important" && "active"}`}
 							data-tab-name="Important"
 							onClick={() => changeCurrentTab("Important")}
 						>
@@ -411,7 +412,6 @@ function Main() {
 									fillRule="evenodd"
 									clipRule="evenodd"
 									d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12.75 9C12.75 8.58579 12.4142 8.25 12 8.25C11.5858 8.25 11.25 8.58579 11.25 9L11.25 11.25H9C8.58579 11.25 8.25 11.5858 8.25 12C8.25 12.4142 8.58579 12.75 9 12.75H11.25V15C11.25 15.4142 11.5858 15.75 12 15.75C12.4142 15.75 12.75 15.4142 12.75 15L12.75 12.75H15C15.4142 12.75 15.75 12.4142 15.75 12C15.75 11.5858 15.4142 11.25 15 11.25H12.75V9Z"
-									fill="rgb(55, 73, 88)"
 								></path>
 							</svg>
 							<span>Add New Project</span>
@@ -472,7 +472,7 @@ function Main() {
 					</section>
 				</nav>
 				<ContentPanel currentTab={currentTab} />
-			</div>
+			</StyledMain>
 		</TaskContextProvider>
 		// </ThemeProvider>
 	)

@@ -8,8 +8,17 @@ display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: space-between;
-color: #374958;
-border: 1px solid #374958;
+/* background-color: white; */
+/* color: ${({ $completed }) => ($completed ? "var(--text-color-2)" : "var(--text-colo-1)")}; */
+border: 1px solid var(--text-color-1);
+border-left: 5px solid ${({ $priority }) => (
+    $priority === "high" ? "red" : $priority === "medium" ? "orange" : "green"
+  )};
+/* border-left-width: 4px; */
+
+&:hover {
+  background-color: var(--bg-color-1);
+}
 
 & .task_status {
   margin: 0 .5rem;
@@ -17,14 +26,23 @@ border: 1px solid #374958;
   width: 1.3rem;
 }
 
+& .task_title, .task_due-date {
+ color: ${({ $completed }) => ($completed ? "var(--text-color-2)" : "var(--text-color-1)")};
+}
+
 & .task_title {
   width: 35%;
   font-size: 1.2rem;
+  text-decoration: ${({ $completed }) => ($completed ? "line-through" : "none")};
 }
 
 & .task_details-btn {
   height: 100%;
   width: 2rem;
+}
+
+& .task_details-btn svg path, .task_important svg path, .task_edit svg path, .task_delete svg path {
+  stroke: ${({ $completed }) => ($completed ? "var(--text-color-2)" : "var(--text-color-1)")};
 }
 
 & .task_due-date {

@@ -10,24 +10,11 @@ function TaskForm(props) {
 			title: props.task?.title || "",
 			completed: props.task?.completed || false,
 			details: props.task?.details || "",
-			dueDate: props.task?.dueDate || new Date().toISOString().substring(0, 10),
-			priority: props.task?.priority || "",
+			dueDate: props.task?.dueDate || "",
+			priority: props.task?.priority || "low",
 			project: currentTab === "All Tasks" ? "misc" : currentTab,
 		},
 	})
-	// const [formData, setFormData] = useState({
-	// 	title: task.title || "",
-	// 	completed: task.completed || false,
-	// 	details: task.details || "",
-	// 	dueDate: task.dueDate || "",
-	// 	priority: task.priority || "",
-	// 	project: currentTab === "All Tasks" ? "misc" : currentTab,
-	// })
-
-	function handleInputChange(e) {
-		const { name, value } = e.target
-		setFormData((prev) => ({ ...prev, [name]: value }))
-	}
 
 	function handleFormSubmit(data) {
 		props.task ? editTask(props.task.id, data) : addNewTask(data)
@@ -38,7 +25,6 @@ function TaskForm(props) {
 	return (
 		<StyledTaskForm
 			className="task-form"
-			// $priority={formData.priority}
 			$priority={watch("priority")}
 			onSubmit={handleSubmit(handleFormSubmit)}
 		>
@@ -48,10 +34,6 @@ function TaskForm(props) {
 					type="text"
 					id="taskForm_inputTitle"
 					placeholder="e.g Pay electricity bill"
-					// required
-					// onChange={handleInputChange}
-					// name="title"
-					// value={formData.title}
 					{...register("title", {
 						required: { value: true, message: "Title is required" },
 					})}
@@ -63,9 +45,6 @@ function TaskForm(props) {
 				<textarea
 					id="taskForm_inputDetails"
 					placeholder="e.g Pay from joint account,..."
-					// onChange={handleInputChange}
-					// name="details"
-					// value={formData.details}
 					{...register("details")}
 				/>
 			</div>
@@ -74,15 +53,8 @@ function TaskForm(props) {
 				<input
 					type="date"
 					id="taskForm_inputDueDate"
-					// required
-					// onChange={handleInputChange}
-					// name="dueDate"
-					// value={formData.dueDate}
-					{...register("dueDate", {
-						required: { value: true, message: "Due date is required" },
-					})}
+					{...register("dueDate")}
 				/>
-				<p className="errors">{formState.errors.dueDate?.message}</p>
 			</div>
 			<div className="task-form_input-priority-wrapper input-wrapper">
 				<span id="priority-title">Priority : </span>
@@ -96,9 +68,6 @@ function TaskForm(props) {
 					type="radio"
 					id="low"
 					value="low"
-					// name="priority"
-					// checked={formData.priority === "low"}
-					// onChange={handleInputChange}
 					{...register("priority")}
 				/>
 				<label
@@ -111,9 +80,6 @@ function TaskForm(props) {
 					type="radio"
 					id="medium"
 					value="medium"
-					// name="priority"
-					// checked={formData.priority === "medium"}
-					// onChange={handleInputChange}
 					{...register("priority")}
 				/>
 				<label
@@ -126,9 +92,6 @@ function TaskForm(props) {
 					type="radio"
 					id="high"
 					value="high"
-					// name="priority"
-					// checked={formData.priority === "high"}
-					// onChange={handleInputChange}
 					{...register("priority")}
 				/>
 			</div>

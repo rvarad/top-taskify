@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useTaskContext } from "../../context/taskContext"
 import StyledProjectTile from "./ProjectTile.styled"
 
@@ -13,22 +13,29 @@ function ProjectTile({ project, changeCurrentTab }) {
 		// changeCurrentTab("All Tasks")
 	}
 
+	useEffect(() => {
+		if (currentTab !== project) {
+			setRenameProjectState(false)
+			setNewName(project)
+		}
+	})
+
 	return (
 		// <div
 		// 	className="project-tile"
 		// 	onClick={() => changeCurrentTab(project)}
 		// >
 		<StyledProjectTile
-			className="nav-btn project-tile"
+			className={`nav-btn project-tile ${currentTab === project && "active"}`}
 			onClick={() => changeCurrentTab(project)}
 			$renameProjectState={renameProjectState}
 		>
 			<svg
+				className="drag-icon"
 				xmlns="http://www.w3.org/2000/svg"
 				data-name="Layer 1"
 				viewBox="0 0 24 24"
 				id="menu"
-				fill="rgb(55, 73, 88)"
 			>
 				<path d="M8.5,10a2,2,0,1,0,2,2A2,2,0,0,0,8.5,10Zm0,7a2,2,0,1,0,2,2A2,2,0,0,0,8.5,17Zm7-10a2,2,0,1,0-2-2A2,2,0,0,0,15.5,7Zm-7-4a2,2,0,1,0,2,2A2,2,0,0,0,8.5,3Zm7,14a2,2,0,1,0,2,2A2,2,0,0,0,15.5,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,15.5,10Z"></path>
 			</svg>
@@ -49,7 +56,10 @@ function ProjectTile({ project, changeCurrentTab }) {
 					<div className="project-options">
 						{renameProjectState ? (
 							<>
-								<button id="submitRenamedProjectBtn">
+								<button
+									id="submitRenamedProjectBtn"
+									onClick={() => setRenameProjectState(false)}
+								>
 									<svg
 										viewBox="0 0 24 24"
 										id="d9090658-f907-4d85-8bc1-743b70378e93"
@@ -92,11 +102,9 @@ function ProjectTile({ project, changeCurrentTab }) {
 										viewBox="0 0 24 24"
 										fill="none"
 										xmlns="http://www.w3.org/2000/svg"
-										stroke="#374958"
 									>
 										<path
 											d="M12 3.99997H6C4.89543 3.99997 4 4.8954 4 5.99997V18C4 19.1045 4.89543 20 6 20H18C19.1046 20 20 19.1045 20 18V12M18.4142 8.41417L19.5 7.32842C20.281 6.54737 20.281 5.28104 19.5 4.5C18.7189 3.71895 17.4526 3.71895 16.6715 4.50001L15.5858 5.58575M18.4142 8.41417L12.3779 14.4505C12.0987 14.7297 11.7431 14.9201 11.356 14.9975L8.41422 15.5858L9.00257 12.6441C9.08001 12.2569 9.27032 11.9013 9.54951 11.6221L15.5858 5.58575M18.4142 8.41417L15.5858 5.58575"
-											stroke="#374958"
 											strokeWidth="2"
 											strokeLinecap="round"
 											strokeLinejoin="round"
@@ -114,35 +122,30 @@ function ProjectTile({ project, changeCurrentTab }) {
 									>
 										<path
 											d="M10 11V17"
-											stroke="#374958"
 											strokeWidth="2"
 											strokeLinecap="round"
 											strokeLinejoin="round"
 										></path>
 										<path
 											d="M14 11V17"
-											stroke="#374958"
 											strokeWidth="2"
 											strokeLinecap="round"
 											strokeLinejoin="round"
 										></path>
 										<path
 											d="M4 7H20"
-											stroke="#374958"
 											strokeWidth="2"
 											strokeLinecap="round"
 											strokeLinejoin="round"
 										></path>
 										<path
 											d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
-											stroke="#374958"
 											strokeWidth="2"
 											strokeLinecap="round"
 											strokeLinejoin="round"
 										></path>
 										<path
 											d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
-											stroke="#374958"
 											strokeWidth="2"
 											strokeLinecap="round"
 											strokeLinejoin="round"
