@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledContentPanel = styled.div`
+const StyledTasksContentPanel = styled.div`
 padding: 1.5rem 2rem;
 position: relative;
 display: flex;
@@ -81,4 +81,4 @@ background-color: var(--bg-color-2);
 }
 `
 
-export default StyledContentPanel
+export default StyledTasksContentPanel

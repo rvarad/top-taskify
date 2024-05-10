@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom"
 import StyledHeader from "./Header.styled"
 import { useRef } from "react"
 
@@ -109,63 +110,71 @@ function Header({ theme, setTheme }) {
 
 	return (
 		<StyledHeader>
-			<div className="logo">
-				<div className="logo-text">
-					<span>Taskify</span>
+			<div className="right">
+				<div className="logo">
+					<div className="logo-text">
+						<span>Taskify</span>
+					</div>
 				</div>
 			</div>
-			<div
-				className="theme-switch"
-				onClick={() =>
-					(themeSelectionMenuRef.current.hidden =
-						!themeSelectionMenuRef.current.hidden)
-				}
-			>
-				<button>{themeIcons[theme]}</button>
-				<ul
-					ref={themeSelectionMenuRef}
-					hidden
+			<div className="middle">
+				<NavLink to={"/"}>Tasks</NavLink>
+				<NavLink to={"notes"}>Notes</NavLink>
+			</div>
+			<div className="left">
+				<div
+					className="theme-switch"
+					onClick={() =>
+						(themeSelectionMenuRef.current.hidden =
+							!themeSelectionMenuRef.current.hidden)
+					}
 				>
-					<li>
-						<input
-							type="radio"
-							name="theme"
-							id="light"
-							value="light"
-							onClick={() => handleThemeInputChange("light")}
-						/>
-						<label htmlFor="light">
-							{themeIcons["light"]}
-							<span>Light Theme</span>
-						</label>
-					</li>
-					<li>
-						<input
-							type="radio"
-							name="theme"
-							id="dark"
-							value="dark"
-							onClick={() => handleThemeInputChange("dark")}
-						/>
-						<label htmlFor="dark">
-							{themeIcons["dark"]}
-							<span>Dark Theme</span>
-						</label>
-					</li>
-					<li>
-						<input
-							type="radio"
-							name="device"
-							id="device"
-							value="device"
-							onClick={() => handleThemeInputChange("device")}
-						/>
-						<label htmlFor="device">
-							{themeIcons["device"]}
-							<span>Device Theme</span>
-						</label>
-					</li>
-				</ul>
+					<button>{themeIcons[theme]}</button>
+					<ul
+						ref={themeSelectionMenuRef}
+						hidden
+					>
+						<li>
+							<input
+								type="radio"
+								name="theme"
+								id="light"
+								value="light"
+								onClick={() => handleThemeInputChange("light")}
+							/>
+							<label htmlFor="light">
+								{themeIcons["light"]}
+								<span>Light Theme</span>
+							</label>
+						</li>
+						<li>
+							<input
+								type="radio"
+								name="theme"
+								id="dark"
+								value="dark"
+								onClick={() => handleThemeInputChange("dark")}
+							/>
+							<label htmlFor="dark">
+								{themeIcons["dark"]}
+								<span>Dark Theme</span>
+							</label>
+						</li>
+						<li>
+							<input
+								type="radio"
+								name="device"
+								id="device"
+								value="device"
+								onClick={() => handleThemeInputChange("device")}
+							/>
+							<label htmlFor="device">
+								{themeIcons["device"]}
+								<span>Device Theme</span>
+							</label>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</StyledHeader>
 	)

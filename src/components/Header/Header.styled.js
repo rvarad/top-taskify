@@ -12,6 +12,20 @@ color: var(--text-color-1);
 background-color: var(--bg-color-3);
 box-shadow: 0 5px 5px -3px var(--shadow-color-1);
 
+& .middle {
+  height: 100%;
+  width: 35%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-evenly;
+}
+
+& .middle a {
+  text-decoration: none;
+  color: var(--text-color-1);
+}
+
 & .theme-switch {
   position: relative;
   width: 2.5rem;

@@ -3,10 +3,10 @@ import { useState } from "react"
 import { useTaskContext } from "../../context/taskContext"
 import TaskTile from "../TaskTile/TaskTile"
 import TaskDetails from "../TaskDetails/TaskDetails"
-import StyledContentPanel from "./ContentPanel.styled"
+import StyledTasksContentPanel from "./TasksContentPanel.styled"
 import TaskForm from "../TaskForm/TaskForm"
 
-function ContentPanel({ currentTab }) {
+function TasksContentPanel({ currentTab }) {
 	const { tasks } = useTaskContext()
 	const [overlayState, setOverlayState] = useState("")
 	const [selectedTask, setSelectedTask] = useState(null)
@@ -67,9 +67,9 @@ function ContentPanel({ currentTab }) {
 	// console.log(tasks)
 
 	return (
-		<StyledContentPanel
-			className="content-panel"
-			id="contentPanel"
+		<StyledTasksContentPanel
+			className="tasks-content-panel"
+			id="tasksContentPanel"
 			$overlayState={overlayState}
 		>
 			<div className="current-tab-heading">
@@ -125,8 +125,8 @@ function ContentPanel({ currentTab }) {
 				})()}
 			</div>
 			<div className="task-list">{taskListElements}</div>
-		</StyledContentPanel>
+		</StyledTasksContentPanel>
 	)
 }
 
-export default ContentPanel
+export default TasksContentPanel

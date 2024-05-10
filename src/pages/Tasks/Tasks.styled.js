@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-const StyledMain = styled.div`
-  /* display: flex;
+const StyledTasks = styled.div`
+  display: flex;
   flex-direction: row;
-  justify-content: center; */
-  height:80%;
+  justify-content: center;
+  height: 100%;
   width : 100%;
 
-/* & .navbar {
+& .navbar {
   width: 25%;
   height: 100%;
   padding: 1.5rem 1rem;
@@ -86,7 +86,7 @@ const StyledMain = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 & .navbar .projects .add-new-project-form input {
@@ -122,7 +122,7 @@ const StyledMain = styled.div`
 
 & .navbar .projects .add-new-project-form .add-new-project-form-buttons #addNewProjectForm_inputCancelBtn {
   fill: red;
-} */
+}
 `
 
-export default StyledMain
+export default StyledTasks

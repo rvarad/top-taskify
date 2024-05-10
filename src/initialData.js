@@ -64,6 +64,31 @@ const tasksData = {
     ]
 }
 
-const notesData = []
+const notesData = [
+    {
+        id: 1712039907013,
+        title: "note 1",
+        content: "this is a note",
+        timestamp: 1712039907013
+    },
+    {
+        id: 1712039907014,
+        title: "note 2",
+        content: "this is another note",
+        timestamp: 1712039907014,
+    },
+    {
+        id: 1712039907015,
+        title: "note 3",
+        content: "this is yet another note",
+        timestamp: 1712039907015
+    },
+    {
+        id: 1712039907016,
+        title: "note 4",
+        content: "this is yet another note",
+        timestamp: 1712039907016
+    }
+]
 
 export { tasksData, notesData }
