@@ -15,6 +15,11 @@ import {
 import Layout from "./components/Layout"
 import Tasks from "./pages/Tasks/Tasks"
 import Notes from "./pages/Notes/Notes"
+import AccountPage from "./pages/AccountPage/AccountPage"
+import SignIn from "./pages/SignIn/SignIn"
+
+import { action as signInAction } from "./pages/SignIn/SignIn"
+import { AuthContextProvider } from "./context/AuthContext"
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -27,12 +32,25 @@ const router = createBrowserRouter(
 				path="notes"
 				element={<Notes />}
 			/>
+			<Route
+				path="signin"
+				element={<SignIn />}
+				action={signInAction}
+			/>
+			<Route
+				path="account"
+				element={<AccountPage />}
+			/>
 		</Route>
 	)
 )
 
 function App() {
-	return <RouterProvider router={router} />
+	return (
+		<AuthContextProvider>
+			<RouterProvider router={router} />
+		</AuthContextProvider>
+	)
 	// const prefersDarkTheme = useDeviceTheme()
 	// const [theme, setTheme] = useState(
 	// 	JSON.parse(localStorage.getItem("theme")) || "light"

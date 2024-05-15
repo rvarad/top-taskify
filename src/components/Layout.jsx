@@ -5,7 +5,6 @@ import { darkMode, lightMode } from "../globalstyles/ThemeColors"
 import GlobalStyles from "../globalstyles/GlobalStyles"
 import Header from "./Header/Header"
 import Footer from "./Footer"
-import { Outlet } from "react-router-dom"
 import Main from "./Main/Main"
 
 function Layout() {

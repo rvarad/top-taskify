@@ -124,7 +124,9 @@ function TasksContentPanel({ currentTab }) {
 					}
 				})()}
 			</div>
-			<div className="task-list">{taskListElements}</div>
+			<div className="task-list">
+				{taskListElements ? taskListElements : "No Tasks"}
+			</div>
 		</StyledTasksContentPanel>
 	)
 }

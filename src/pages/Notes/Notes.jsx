@@ -23,11 +23,13 @@ function Notes() {
 
 	function editNote(id, updatedNote) {
 		setNotes((prev) => {
-			return prev.map((prevNote) =>
-				prevNote.id === id
-					? { ...prevNote, ...updatedNote, timestamp: Date.now() }
-					: prevNote
-			)
+			return prev
+				.map((prevNote) =>
+					prevNote.id === id
+						? { ...prevNote, ...updatedNote, timestamp: Date.now() }
+						: prevNote
+				)
+				.sort((a, b) => b.timestamp - a.timestamp)
 		})
 	}
 
@@ -98,7 +100,9 @@ function Notes() {
 						}
 					})()}
 				</div>
-				<div className="notes-grid">{notesListElements}</div>
+				<div className="notes-grid">
+					{notesListElements ? notesListElements : "No Notes"}
+				</div>
 			</StyledNotes>
 		</NoteContextProvider>
 	)

@@ -1,9 +1,14 @@
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import StyledHeader from "./Header.styled"
 import { useRef } from "react"
+import { useAuthContext } from "../../context/AuthContext"
+import { authSignOut } from "../../firebaseSetup"
 
 function Header({ theme, setTheme }) {
 	const themeSelectionMenuRef = useRef(null)
+
+	const { currentUser } = useAuthContext()
+	// console.log(currentUser)
 
 	const themeIcons = {
 		light: (
@@ -110,18 +115,27 @@ function Header({ theme, setTheme }) {
 
 	return (
 		<StyledHeader>
-			<div className="right">
+			<div className="left">
 				<div className="logo">
 					<div className="logo-text">
 						<span>Taskify</span>
 					</div>
 				</div>
+				<button
+					onClick={() => {
+						authSignOut()
+							.then((res) => console.log(res))
+							.catch((err) => console.log(err))
+					}}
+				>
+					Sign out
+				</button>
 			</div>
 			<div className="middle">
 				<NavLink to={"/"}>Tasks</NavLink>
 				<NavLink to={"notes"}>Notes</NavLink>
 			</div>
-			<div className="left">
+			<div className="right">
 				<div
 					className="theme-switch"
 					onClick={() =>
@@ -175,6 +189,13 @@ function Header({ theme, setTheme }) {
 						</li>
 					</ul>
 				</div>
+				{currentUser ? (
+					<div className="mini-account"></div>
+				) : (
+					<button className="signin-btn">
+						<NavLink to={"signin"}>Sign in</NavLink>
+					</button>
+				)}
 			</div>
 		</StyledHeader>
 	)

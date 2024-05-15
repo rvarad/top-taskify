@@ -26,6 +26,13 @@ box-shadow: 0 5px 5px -3px var(--shadow-color-1);
   color: var(--text-color-1);
 }
 
+& .right {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 & .theme-switch {
   position: relative;
   width: 2.5rem;
