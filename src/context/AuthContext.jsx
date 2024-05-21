@@ -1,23 +1,49 @@
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
+import {
+	createUserWithEmailAndPassword,
+	onAuthStateChanged,
+	signInWithEmailAndPassword,
+	signOut,
+} from "firebase/auth"
 import { createContext, useContext, useEffect, useState } from "react"
-import { auth } from "../firebaseSetup"
+import { auth, db } from "../firebaseSetup"
+import { doc, getDoc } from "firebase/firestore"
 
 const AuthContext = createContext()
 
 function AuthContextProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState()
+	const [loading, setLoading] = useState(true)
 
-	// function authSignUpWithEmailAndPassword(email, password) { }
+	function authSignUpWithEmailAndPassword(email, password) {
+		return createUserWithEmailAndPassword(auth, email, password)
+	}
 
-	// function authSignInWithEmailAndPassword(email, password) {
-	//   return signInWithEmailAndPassword(auth, email, password)
-	// }
+	function authSignInWithEmailAndPassword(email, password) {
+		return signInWithEmailAndPassword(auth, email, password)
+	}
 
-	function authSignOut() {}
+	function authSignOut() {
+		return signOut(auth)
+	}
+
+	function getUserInfoFromDB(uid) {
+		return getDoc(doc(db, "users", uid))
+	}
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, (user) => {
-			setCurrentUser(user)
+		const unsubscribe = onAuthStateChanged(auth, async (user) => {
+			setLoading(false)
+			if (user) {
+				setCurrentUser(user)
+				console.log("authcontext user", currentUser)
+				sessionStorage.setItem(
+					"userAccessToken",
+					JSON.stringify(user.accessToken)
+				)
+			} else {
+				sessionStorage.removeItem("userAccessToken")
+				setCurrentUser(null)
+			}
 		})
 
 		return unsubscribe
@@ -25,10 +51,17 @@ function AuthContextProvider({ children }) {
 
 	const value = {
 		currentUser,
-		// authSignInWithEmailAndPassword
+		authSignInWithEmailAndPassword,
+		authSignUpWithEmailAndPassword,
+		authSignOut,
+		getUserInfoFromDB,
 	}
 
-	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+	return (
+		!loading && (
+			<AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+		)
+	)
 }
 
 function useAuthContext() {

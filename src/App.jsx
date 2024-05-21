@@ -17,9 +17,10 @@ import Tasks from "./pages/Tasks/Tasks"
 import Notes from "./pages/Notes/Notes"
 import AccountPage from "./pages/AccountPage/AccountPage"
 import SignIn from "./pages/SignIn/SignIn"
-
-import { action as signInAction } from "./pages/SignIn/SignIn"
+import { loader as accountPageLoader } from "./pages/AccountPage/AccountPage"
+import { loader as signInLoader } from "./pages/SignIn/SignIn"
 import { AuthContextProvider } from "./context/AuthContext"
+import SignUp from "./pages/SignUp/SignUp"
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -35,11 +36,17 @@ const router = createBrowserRouter(
 			<Route
 				path="signin"
 				element={<SignIn />}
-				action={signInAction}
+				loader={signInLoader}
+				// action={signInAction}
 			/>
 			<Route
 				path="account"
 				element={<AccountPage />}
+				loader={accountPageLoader}
+			/>
+			<Route
+				path="signup"
+				element={<SignUp />}
 			/>
 		</Route>
 	)

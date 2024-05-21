@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { collection, doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyABV2ye1IeJrI3N8_JlFiVBywW-eOq8jzU",
@@ -12,11 +13,18 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
+const db = getFirestore(app)
 
-export { auth }
+// const usersRef = collection(db, "users")
+
+export { auth, db }
 
 
 ///////utils
+
+export function authSignUpWithEmailAndPassword(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password)
+}
 
 export function authSignInWithEmailAndPassword(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
@@ -24,4 +32,18 @@ export function authSignInWithEmailAndPassword(email, password) {
 
 export function authSignOut() {
   return signOut(auth)
+}
+
+export function getUserInfo(uid) {
+  return getDoc(doc(db, "users", uid))
+}
+
+// export function addUserInfoToDB ({uid, firstName, lastName, displayName}) {
+export function addUserInfoToDB(uid, firstName, lastName, displayName) {
+  return setDoc(doc(db, "users", uid), {
+    firstName: firstName,
+    lastName: lastName,
+    displayName: displayName
+  })
+  // getDoc(doc(usersRef, "oFeFFb37EFPI3amV02kTlbyZy652")).then((res) => console.log(res.data()))
 }

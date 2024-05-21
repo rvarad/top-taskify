@@ -8,7 +8,7 @@ function Header({ theme, setTheme }) {
 	const themeSelectionMenuRef = useRef(null)
 
 	const { currentUser } = useAuthContext()
-	// console.log(currentUser)
+	console.log(currentUser)
 
 	const themeIcons = {
 		light: (
@@ -124,8 +124,8 @@ function Header({ theme, setTheme }) {
 				<button
 					onClick={() => {
 						authSignOut()
-							.then((res) => console.log(res))
-							.catch((err) => console.log(err))
+						// .then((res) => console.log(res))
+						// .catch((err) => console.log(err))
 					}}
 				>
 					Sign out
@@ -190,11 +190,30 @@ function Header({ theme, setTheme }) {
 					</ul>
 				</div>
 				{currentUser ? (
-					<div className="mini-account"></div>
+					<div className="mini-account">
+						<div className="mini-profile-pic">
+							<svg
+								fill="#000000"
+								viewBox="0 0 32 32"
+								id="icon"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								{/* <defs>
+									<style>
+										.cls-1 {
+										"fill": "none";
+										}
+									</style>
+								</defs> */}
+								<path d="M16,8a5,5,0,1,0,5,5A5,5,0,0,0,16,8Zm0,8a3,3,0,1,1,3-3A3.0034,3.0034,0,0,1,16,16Z"></path>
+								<path d="M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2ZM10,26.3765V25a3.0033,3.0033,0,0,1,3-3h6a3.0033,3.0033,0,0,1,3,3v1.3765a11.8989,11.8989,0,0,1-12,0Zm13.9925-1.4507A5.0016,5.0016,0,0,0,19,20H13a5.0016,5.0016,0,0,0-4.9925,4.9258,12,12,0,1,1,15.985,0Z"></path>
+							</svg>
+						</div>
+					</div>
 				) : (
-					<button className="signin-btn">
-						<NavLink to={"signin"}>Sign in</NavLink>
-					</button>
+					<Link to={"signin"}>
+						<button>Sign In</button>
+					</Link>
 				)}
 			</div>
 		</StyledHeader>

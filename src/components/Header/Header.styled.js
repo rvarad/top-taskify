@@ -118,6 +118,28 @@ box-shadow: 0 5px 5px -3px var(--shadow-color-1);
   color: var(--text-color-1);
   font-size: .9rem;
 }
+
+& .mini-account {
+  margin-left: 1rem;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+& .mini-account .mini-profile-pic {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+& .mini-account .mini-profile-pic svg {
+  width: 100%;
+}
 `
 
 export default StyledHeader
