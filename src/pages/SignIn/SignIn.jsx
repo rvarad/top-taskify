@@ -5,6 +5,7 @@ import {
 	Link,
 	redirect,
 	useActionData,
+	useLoaderData,
 	useNavigate,
 	useSubmit,
 } from "react-router-dom"
@@ -12,15 +13,27 @@ import { useAuthContext } from "../../context/AuthContext"
 import { authSignInWithEmailAndPassword } from "../../firebaseSetup"
 import { useState } from "react"
 
-export function loader() {
-	return sessionStorage.getItem("userAccessToken") ? redirect("/") : null
+export function loader({ request }) {
+	const params = new URL(request.url).searchParams
+	console.log(params)
+	return sessionStorage.getItem("userAccessToken")
+		? redirect("/")
+		: { redirectTo: params.get("redirectTo"), message: params.get("message") }
 }
 
 function SignIn() {
+	const { setProfileImg } = useAuthContext()
+
 	const navigate = useNavigate()
+	const loaderData = useLoaderData()
 	const [submissionErrors, setSubmissionErrors] = useState()
 
-	const { register, formState, handleSubmit, reset } = useForm({
+	const {
+		register,
+		formState: { errors, isDirty, isTouched },
+		handleSubmit,
+		reset,
+	} = useForm({
 		defaultValues: {
 			email: "",
 			password: "",
@@ -33,8 +46,11 @@ function SignIn() {
 				data.email,
 				data.password
 			)
-			console.log(user)
-			return navigate("/", { replace: true })
+			setProfileImg(user.user.photoURL)
+			return loaderData.redirectTo
+				? navigate(`/${loaderData.redirectTo}`, { replace: true })
+				: navigate("/", { replace: true })
+			// return navigate("/", { replace: true })
 		} catch (error) {
 			setSubmissionErrors(error.message)
 			// reset()
@@ -48,6 +64,7 @@ function SignIn() {
 					<span>Sign in to your account</span>
 				</div>
 				<form onSubmit={handleSubmit(handleFormSubmit)}>
+					{!isDirty && <div className="message">{loaderData.message}</div>}
 					<div className="submission-error">
 						{submissionErrors === "Firebase: Error (auth/invalid-credential)."
 							? "Invalid Credentials"
@@ -63,7 +80,7 @@ function SignIn() {
 								// validation for email
 							})}
 						/>
-						<p className="errors">{formState.errors.email?.message}</p>
+						<p className="errors">{errors.email?.message}</p>
 					</div>
 					<div className="input-wrapper">
 						<label htmlFor="passwordInput">Password : </label>
@@ -74,7 +91,7 @@ function SignIn() {
 								required: { value: true, message: "Password is required" },
 							})}
 						/>
-						<p className="errors">{formState.errors.password?.message}</p>
+						<p className="errors">{errors.password?.message}</p>
 					</div>
 					<div className="options">
 						<button

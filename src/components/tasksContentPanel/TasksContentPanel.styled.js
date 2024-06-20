@@ -7,7 +7,7 @@ display: flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: center;
-width: 75%;
+width: ${({ $navExpanded }) => ($navExpanded ? "75%" : "90%")};
 height: 100%;
 background-color: var(--bg-color-2);
 /* background-color: #192734; */

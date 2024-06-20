@@ -1,13 +1,13 @@
 /* eslint-disable no-case-declarations */
 import { useState } from "react"
-import { useTaskContext } from "../../context/taskContext"
+import { useTasksContext } from "../../context/TasksContext"
 import TaskTile from "../TaskTile/TaskTile"
 import TaskDetails from "../TaskDetails/TaskDetails"
 import StyledTasksContentPanel from "./TasksContentPanel.styled"
 import TaskForm from "../TaskForm/TaskForm"
 
-function TasksContentPanel({ currentTab }) {
-	const { tasks } = useTaskContext()
+function TasksContentPanel({ navExpanded }) {
+	const { tasks, currentTab } = useTasksContext()
 	const [overlayState, setOverlayState] = useState("")
 	const [selectedTask, setSelectedTask] = useState(null)
 
@@ -71,6 +71,7 @@ function TasksContentPanel({ currentTab }) {
 			className="tasks-content-panel"
 			id="tasksContentPanel"
 			$overlayState={overlayState}
+			$navExpanded={navExpanded}
 		>
 			<div className="current-tab-heading">
 				<span>{currentTab}</span>

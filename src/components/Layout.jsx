@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components"
 import { darkMode, lightMode } from "../globalstyles/ThemeColors"
 import GlobalStyles from "../globalstyles/GlobalStyles"
 import Header from "./Header/Header"
-import Footer from "./Footer"
+import Footer from "./Footer/Footer"
 import Main from "./Main/Main"
 
 function Layout() {
@@ -34,17 +34,6 @@ function Layout() {
 					theme={theme}
 					setTheme={setNewTheme}
 				/>
-				{/* <main
-					style={{
-						// display: "flex",
-						// flexDirection: "row",
-						// justifyContent: "center",
-						height: "80%",
-						width: "100%",
-					}}
-				>
-					<Outlet />
-				</main> */}
 				<Main />
 				<Footer />
 			</>

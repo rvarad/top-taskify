@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react"
-import { useTaskContext } from "../../context/taskContext"
+import { useEffect, useRef, useState } from "react"
+import { useTasksContext } from "../../context/TasksContext"
 import StyledProjectTile from "./ProjectTile.styled"
 
-function ProjectTile({ project, changeCurrentTab }) {
-	const { currentTab, renameProject, deleteProject } = useTaskContext()
+function ProjectTile({ project }) {
+	const { currentTab, renameProject, deleteProject, changeCurrentTab } =
+		useTasksContext()
 
 	const [newName, setNewName] = useState(project)
 	const [renameProjectState, setRenameProjectState] = useState(false)
+
+	const dragref = useRef()
 
 	function handleDeleteProject() {
 		deleteProject(project)
@@ -28,6 +31,8 @@ function ProjectTile({ project, changeCurrentTab }) {
 		<StyledProjectTile
 			className={`nav-btn project-tile ${currentTab === project && "active"}`}
 			onClick={() => changeCurrentTab(project)}
+			ref={dragref}
+			onDragEnd={() => (dragref.current.draggable = false)}
 			$renameProjectState={renameProjectState}
 		>
 			<svg
@@ -36,6 +41,7 @@ function ProjectTile({ project, changeCurrentTab }) {
 				data-name="Layer 1"
 				viewBox="0 0 24 24"
 				id="menu"
+				onMouseDown={() => (dragref.current.draggable = true)}
 			>
 				<path d="M8.5,10a2,2,0,1,0,2,2A2,2,0,0,0,8.5,10Zm0,7a2,2,0,1,0,2,2A2,2,0,0,0,8.5,17Zm7-10a2,2,0,1,0-2-2A2,2,0,0,0,15.5,7Zm-7-4a2,2,0,1,0,2,2A2,2,0,0,0,8.5,3Zm7,14a2,2,0,1,0,2,2A2,2,0,0,0,15.5,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,15.5,10Z"></path>
 			</svg>

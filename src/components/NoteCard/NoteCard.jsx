@@ -1,8 +1,8 @@
-import { useNoteContext } from "../../context/noteContext"
+import { useNotesContext } from "../../context/NotesContext"
 import StyledNoteCard from "./NoteCard.styled"
 
 function NoteCard({ note, setSelectedNote, setOverlayState }) {
-	const { deleteNote } = useNoteContext()
+	const { deleteNote } = useNotesContext()
 
 	function convertDate(date) {
 		let temp = new Date(date)

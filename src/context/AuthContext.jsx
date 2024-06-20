@@ -13,6 +13,7 @@ const AuthContext = createContext()
 function AuthContextProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState()
 	const [loading, setLoading] = useState(true)
+	const [profileImg, setProfileImg] = useState()
 
 	function authSignUpWithEmailAndPassword(email, password) {
 		return createUserWithEmailAndPassword(auth, email, password)
@@ -35,11 +36,11 @@ function AuthContextProvider({ children }) {
 			setLoading(false)
 			if (user) {
 				setCurrentUser(user)
-				console.log("authcontext user", currentUser)
 				sessionStorage.setItem(
 					"userAccessToken",
 					JSON.stringify(user.accessToken)
 				)
+				setProfileImg(user.photoURL)
 			} else {
 				sessionStorage.removeItem("userAccessToken")
 				setCurrentUser(null)
@@ -51,6 +52,8 @@ function AuthContextProvider({ children }) {
 
 	const value = {
 		currentUser,
+		profileImg,
+		setProfileImg,
 		authSignInWithEmailAndPassword,
 		authSignUpWithEmailAndPassword,
 		authSignOut,

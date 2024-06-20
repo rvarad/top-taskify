@@ -1,6 +1,8 @@
+import StyledFooter from "./Footer.styled"
+
 function Footer() {
 	return (
-		<footer>
+		<StyledFooter>
 			<div className="footer">
 				<span className="credits">
 					Brought to you by :{" "}
@@ -12,14 +14,14 @@ function Footer() {
 					</a>{" "}
 					|{" "}
 					<a
-						href="https://github.com/rvarad/"
+						href="https://github.com/rvarad/top-taskify"
 						target="_blank"
 					>
 						Source
 					</a>
 				</span>
 			</div>
-		</footer>
+		</StyledFooter>
 	)
 }
 

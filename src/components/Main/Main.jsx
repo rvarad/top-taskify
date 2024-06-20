@@ -1,8 +1,3 @@
-import { useEffect, useState } from "react"
-import { TaskContextProvider } from "../../context/taskContext"
-import { tasksData as initialTasks } from "../../initialData"
-import ProjectTile from "../ProjectTile/ProjectTile"
-import ContentPanel from "../tasksContentPanel/TasksContentPanel"
 import StyledMain from "./Main.styled"
 import { Outlet } from "react-router-dom"
 

@@ -1,9 +1,9 @@
-import { useTaskContext } from "../../context/taskContext"
+import { useTasksContext } from "../../context/TasksContext"
 import StyledTaskTile from "./TaskTile.styled"
 
 function TaskTile({ task, setOverlayState, setSelectedTask }) {
 	const { deleteTask, toggleTaskCompleted, toggleTaskImportant } =
-		useTaskContext()
+		useTasksContext()
 
 	function handleEditTaskBtnClick() {
 		setOverlayState("edit task")

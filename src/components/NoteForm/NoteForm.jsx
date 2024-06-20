@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form"
-import { useNoteContext } from "../../context/noteContext"
+import { useNotesContext } from "../../context/NotesContext"
 import StyledNoteForm from "./NoteForm.styled"
 
 function NoteForm(props) {
-	const { addNewNote, editNote } = useNoteContext()
+	const { addNewNote, editNote } = useNotesContext()
 
 	const { register, watch, handleSubmit, formState } = useForm({
 		defaultValues: {

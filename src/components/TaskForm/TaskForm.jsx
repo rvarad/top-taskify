@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { useTaskContext } from "../../context/taskContext"
+import { useTasksContext } from "../../context/TasksContext"
 import { useForm } from "react-hook-form"
 import StyledTaskForm from "./TaskForm.styled"
 
 function TaskForm(props) {
-	const { addNewTask, editTask, currentTab } = useTaskContext()
+	const { addNewTask, editTask, currentTab } = useTasksContext()
 	const { register, handleSubmit, watch, formState } = useForm({
 		defaultValues: {
 			title: props.task?.title || "",

@@ -8,15 +8,14 @@ const StyledTasks = styled.div`
   width : 100%;
 
 & .navbar {
-  width: 25%;
+  width: ${({ $navExpanded }) => $navExpanded ? "25%" : "10%"};
   height: 100%;
   padding: 1.5rem 1rem;
   display: flex;
   flex-direction: column;
-
   background-color: var(--bg-color-1);
   color: var(--text-color-1);
-  border-right: 1px solid var(--accent-color);
+  /* border-right: 1px solid var(--accent-color); */
 }
 
 & .navbar .home {
@@ -24,8 +23,32 @@ const StyledTasks = styled.div`
   height: 50%;
 }
 
-& .navbar .home h2, .navbar .projects h2 {
+& .navbar .home .heading {
+  padding-bottom: .6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: ${({ $navExpanded }) => ($navExpanded ? "space-between" : "center")};
+  border-bottom: solid 2px var(--text-color-1);
+  width: 100%;
+  /* height: ; */
+}
+
+& .navbar #retractNavbarBtn {
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+& .navbar #retractNavbarBtn svg g {
+  fill: var(--text-color-1);
+}
+
+& .navbar .projects h2 {
   padding-bottom: 0.6rem;
+  width: 100%;
   border-bottom: solid 2px var(--text-color-1);
 }
 
@@ -36,7 +59,7 @@ const StyledTasks = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: ${({ $navExpanded }) => ($navExpanded ? "flex-start" : "center")};
   font-size: 1.12rem;
   color: var(--text-color-1);
   cursor: pointer;
@@ -52,8 +75,12 @@ const StyledTasks = styled.div`
 }
 
 & .navbar .nav-btn svg  {
-  width: 2rem;
+  width: ${({ $navExpanded }) => $navExpanded ? "2rem" : "2.5rem"};
   margin-right: 0.5rem;
+}
+
+& .navbar .nav-btn span {
+  display: ${({ $navExpanded }) => $navExpanded ? "block" : "none"};
 }
 
 & .navbar .projects {
