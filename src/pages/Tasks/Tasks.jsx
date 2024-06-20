@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { tasksData as initialTasks } from "../../initialData"
 import ProjectTile from "../../components/ProjectTile/ProjectTile"
 import { useTasksContext } from "../../context/TasksContext"
@@ -19,12 +19,34 @@ function Tasks() {
 	const [addNewProjectFormState, setAddNewProjectFormState] = useState(false)
 	const [navExpanded, setNavExpanded] = useState(true)
 
-	const projectListElements = tasks.projects.map((project) => {
+	const draggedItem = useRef(null)
+	const draggedToItem = useRef(null)
+
+	function handleSubmitNewProject(e) {
+		e.preventDefault()
+		if (tasks.projects.includes(newProjectName)) {
+			alert(`${newProjectName} already exists`)
+		} else {
+			addNewProject(newProjectName)
+			// setNewProjectName("")
+			setAddNewProjectFormState(false)
+			// changeCurrentTab(newProjectName)
+		}
+	}
+
+	// function sortAfterDragEnd() {
+
+	// }
+
+	const projectListElements = tasks.projects.map((project, index) => {
 		return (
 			project !== "misc" && (
 				<ProjectTile
 					key={project}
 					project={project}
+					index={index}
+					draggedItem={draggedItem}
+					draggedToItem={draggedToItem}
 				/>
 			)
 		)
@@ -362,12 +384,7 @@ function Tasks() {
 						{addNewProjectFormState && (
 							<form
 								className="add-new-project-form"
-								onSubmit={() => {
-									addNewProject(newProjectName)
-									// setNewProjectName("")
-									setAddNewProjectFormState(false)
-									// changeCurrentTab(newProjectName)
-								}}
+								onSubmit={(e) => handleSubmitNewProject(e)}
 							>
 								<input
 									type="text"
