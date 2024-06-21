@@ -12,8 +12,13 @@ function Tasks() {
 	// )
 	// // const [projDeleted, setProjDeleted] = useState(false)
 	// const [currentTab, setCurrentTab] = useState("All Tasks")
-	const { tasks, currentTab, changeCurrentTab, addNewProject } =
-		useTasksContext()
+	const {
+		tasks,
+		currentTab,
+		changeCurrentTab,
+		addNewProject,
+		updateProjectsListAfterSort,
+	} = useTasksContext()
 
 	const [newProjectName, setNewProjectName] = useState("")
 	const [addNewProjectFormState, setAddNewProjectFormState] = useState(false)
@@ -34,9 +39,18 @@ function Tasks() {
 		}
 	}
 
-	// function sortAfterDragEnd() {
+	function sortAfterDragEnd() {
+		let projectsList = [...tasks.projects]
 
-	// }
+		let draggedItemContent = projectsList.splice(draggedItem.current, 1)[0]
+
+		projectsList.splice(draggedToItem.current, 0, draggedItemContent)
+
+		draggedItem.current = null
+		draggedToItem.current = null
+
+		updateProjectsListAfterSort(projectsList)
+	}
 
 	const projectListElements = tasks.projects.map((project, index) => {
 		return (
@@ -47,6 +61,7 @@ function Tasks() {
 					index={index}
 					draggedItem={draggedItem}
 					draggedToItem={draggedToItem}
+					sortAfterDragEnd={sortAfterDragEnd}
 				/>
 			)
 		)

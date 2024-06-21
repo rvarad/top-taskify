@@ -2,7 +2,13 @@ import { useEffect, useState } from "react"
 import { useTasksContext } from "../../context/TasksContext"
 import StyledProjectTile from "./ProjectTile.styled"
 
-function ProjectTile({ project, index, draggedItem, draggedToItem }) {
+function ProjectTile({
+	project,
+	index,
+	draggedItem,
+	draggedToItem,
+	sortAfterDragEnd,
+}) {
 	const { currentTab, renameProject, deleteProject, changeCurrentTab } =
 		useTasksContext()
 
@@ -30,9 +36,12 @@ function ProjectTile({ project, index, draggedItem, draggedToItem }) {
 		<StyledProjectTile
 			className={`nav-btn project-tile ${currentTab === project && "active"}`}
 			draggable={draggable}
-			// onDragStart={() => console.log("drag start", index)}
-			// onDragEnter={() => console.log("drag enter", index)}
-			onDragEnd={() => setDraggable(false)}
+			onDragStart={() => (draggedItem.current = index)}
+			onDragEnter={() => (draggedToItem.current = index)}
+			onDragEnd={() => {
+				sortAfterDragEnd()
+				setDraggable(false)
+			}}
 			onClick={() => changeCurrentTab(project)}
 			$renameProjectState={renameProjectState}
 		>

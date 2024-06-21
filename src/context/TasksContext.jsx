@@ -101,9 +101,9 @@ function TasksContextProvider({ children }) {
 		setCurrentTab(tab)
 	}
 
-	// function sortProjectList() {
-
-	// }
+	function updateProjectsListAfterSort(updatedList) {
+		setTasks((prev) => ({...prev, projects: [...updatedList]}))
+	}
 
 	useEffect(() => {
 		const getTasksData = async () => {
@@ -143,6 +143,7 @@ function TasksContextProvider({ children }) {
 		addNewProject,
 		renameProject,
 		deleteProject,
+		updateProjectsListAfterSort,
 	}
 
 	return (
