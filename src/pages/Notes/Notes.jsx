@@ -25,7 +25,7 @@ function Notes() {
 	const [selectedNote, setSelectedNote] = useState(null)
 	const [overlayState, setOverlayState] = useState("")
 
-	console.log(typeof notes)
+	// console.log(typeof notes)
 
 	// function addNewNote(note) {
 	// 	setNotes((prev) => [
@@ -79,7 +79,10 @@ function Notes() {
 			</div>
 			<div
 				id="addNewNoteBtn"
-				onClick={() => setOverlayState("new note")}
+				onClick={() => {
+					setOverlayState("new note")
+					console.log("clicked")
+				}}
 			>
 				<svg
 					viewBox="0 0 24 24"
@@ -114,7 +117,11 @@ function Notes() {
 					}
 				})()}
 			</div>
-			<div className="notes-grid">{notes ? notesListElements : "No Notes"}</div>
+			{notes && notes.length > 0 ? (
+				<div className="notes-grid">{notesListElements}</div>
+			) : (
+				<div className="no-notes">No Notes</div>
+			)}
 		</StyledNotes>
 	)
 }

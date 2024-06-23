@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useTasksContext } from "../../context/TasksContext"
 import { useForm } from "react-hook-form"
 import StyledTaskForm from "./TaskForm.styled"
@@ -16,16 +16,32 @@ function TaskForm(props) {
 		},
 	})
 
+	const taskFormRef = useRef()
+
 	function handleFormSubmit(data) {
 		props.task ? editTask(props.task.id, data) : addNewTask(data)
 		// console.log(data)
 		props.setOverlayState("")
 	}
 
+	useEffect(() => {
+		const handler = (e) => {
+			if (taskFormRef.current && !taskFormRef.current.contains(e.target)) {
+				props.setOverlayState("")
+			}
+			console.log("clicked")
+		}
+
+		document.addEventListener("mousedown", handler)
+
+		return () => removeEventListener("mousedown", handler)
+	})
+
 	return (
 		<StyledTaskForm
 			className="task-form"
 			$priority={watch("priority")}
+			ref={taskFormRef}
 			onSubmit={handleSubmit(handleFormSubmit)}
 		>
 			<div className="task-form_input-title-wrapper input-wrapper">

@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { useNotesContext } from "../../context/NotesContext"
 import StyledNoteForm from "./NoteForm.styled"
+import { useEffect, useRef } from "react"
 
 function NoteForm(props) {
 	const { addNewNote, editNote } = useNotesContext()
@@ -12,13 +13,30 @@ function NoteForm(props) {
 		},
 	})
 
+	const noteFormRef = useRef()
+
 	function handleFormSubmit(data) {
 		props.note ? editNote(props.note.id, data) : addNewNote(data)
 		props.setOverlayState("")
 	}
 
+	useEffect(() => {
+		const handler = (e) => {
+			if (noteFormRef.current && !noteFormRef.current.contains(e.target)) {
+				props.setOverlayState("")
+			}
+		}
+
+		document.addEventListener("mousedown", handler)
+
+		return () => document.removeEventListener("mousedown", handler)
+	})
+
 	return (
-		<StyledNoteForm onSubmit={handleSubmit(handleFormSubmit)}>
+		<StyledNoteForm
+			ref={noteFormRef}
+			onSubmit={handleSubmit(handleFormSubmit)}
+		>
 			<div className="input-wrapper noteForm_title">
 				<label htmlFor="noteForm_inputTitle">Title : </label>
 				<input

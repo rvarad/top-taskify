@@ -108,35 +108,54 @@ function Header({ theme, setTheme }) {
 	}
 
 	// console.log(themeSelectionMenuRef)
-	function toggleProfilePopup() {
-		console.log(profilePopupRef.current.style.display)
-		profilePopupRef.current.style.display === "" ||
-		profilePopupRef.current.style.display === "none"
-			? (profilePopupRef.current.style.display = "flex")
-			: (profilePopupRef.current.style.display = "none")
-		themeSelectionMenuRef.current.hidden = true
-	}
+	// function toggleProfilePopup() {
+	// 	console.log(profilePopupRef.current.style.display)
+	// 	profilePopupRef.current.style.display === "" ||
+	// 	profilePopupRef.current.style.display === "none"
+	// 		? (profilePopupRef.current.style.display = "flex")
+	// 		: (profilePopupRef.current.style.display = "none")
+	// 	themeSelectionMenuRef.current.hidden = true
+	// }
 
-	function toggleThemeSelectionMenu() {
-		themeSelectionMenuRef.current.hidden = !themeSelectionMenuRef.current.hidden
-		if (profilePopupRef.current) profilePopupRef.current.style.display = "none"
-	}
+	// function toggleThemeSelectionMenu() {
+	// 	themeSelectionMenuRef.current.hidden = !themeSelectionMenuRef.current.hidden
+	// 	if (profilePopupRef.current) profilePopupRef.current.style.display = "none"
+	// }
 
 	function handleThemeInputChange(value) {
 		// setNewTheme(value)
 		setTheme(value)
-		toggleThemeSelectionMenu()
+		themeSelectionMenuRef.current.hidden = true
+		// toggleThemeSelectionMenu()
 	}
 
 	function handleSignOut() {
 		authSignOut()
-		toggleProfilePopup()
+		profilePopupRef.current.style.display = "none"
+		// toggleProfilePopup()
 		navigate("/")
 	}
 
-	// useEffect(() => {
-	// 	const profilePopupElement = profilePopupRef.current
-	// }, [])
+	useEffect(() => {
+		const handler = (e) => {
+			if (
+				!themeSelectionMenuRef.current.hidden &&
+				!themeSelectionMenuRef.current.contains(e.target)
+			) {
+				themeSelectionMenuRef.current.hidden = true
+			} else if (
+				profilePopupRef.current &&
+				!profilePopupRef.current.hidden &&
+				!profilePopupRef.current.contains(e.target)
+			) {
+				profilePopupRef.current.style.display = "none"
+			}
+		}
+
+		document.addEventListener("mousedown", handler)
+
+		return () => document.removeEventListener("mousedown", handler)
+	})
 
 	return (
 		<StyledHeader>
@@ -192,7 +211,11 @@ function Header({ theme, setTheme }) {
 			<div className="right">
 				<div
 					className="theme-switch"
-					onClick={toggleThemeSelectionMenu}
+					onClick={() =>
+						(themeSelectionMenuRef.current.hidden =
+							!themeSelectionMenuRef.current.hidden)
+					}
+					// onClick={toggleThemeSelectionMenu}
 				>
 					<button>{themeIcons[theme]}</button>
 					<ul
@@ -245,8 +268,11 @@ function Header({ theme, setTheme }) {
 						<button
 							className="mini-profile-pic"
 							onClick={() => {
-								toggleProfilePopup()
-								console.log("clicked in div")
+								// toggleProfilePopup()
+								profilePopupRef.current.style.display =
+									profilePopupRef.current.style.display === "flex"
+										? "none"
+										: "flex"
 							}}
 						>
 							{profileImg ? (
@@ -276,7 +302,9 @@ function Header({ theme, setTheme }) {
 								<Link to={"account"}>
 									<button
 										id="accountBtn"
-										onClick={toggleProfilePopup}
+										onClick={() =>
+											(profilePopupRef.current.style.display = "none")
+										}
 									>
 										Manage your Account
 									</button>

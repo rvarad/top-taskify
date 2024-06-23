@@ -1,8 +1,29 @@
+import { useEffect, useRef } from "react"
 import StyledTaskDetails from "./TaskDetails.styled"
 
 function TaskDetails({ task, setOverlayState }) {
+	const taskDetailsRef = useRef()
+
+	useEffect(() => {
+		const handler = (e) => {
+			if (
+				taskDetailsRef.current &&
+				!taskDetailsRef.current.contains(e.target)
+			) {
+				setOverlayState("")
+			}
+		}
+
+		document.addEventListener("mousedown", handler)
+
+		return () => document.removeEventListener("mousedown", handler)
+	})
+
 	return (
-		<StyledTaskDetails className="task-details-popup">
+		<StyledTaskDetails
+			ref={taskDetailsRef}
+			className="task-details-popup"
+		>
 			<div className="task-details-popup_content">
 				<div className="task-details-popup_task-title">{task.title}</div>
 				<div className="task-details-popup_project task-details-popup_category">

@@ -73,7 +73,7 @@ function NotesContextProvider({ children }) {
 			// }
 		}
 
-		return getNotesData
+		getNotesData()
 	}, [currentUser])
 
 	useEffect(() => {

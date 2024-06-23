@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useTasksContext } from "../../context/TasksContext"
 import TaskTile from "../TaskTile/TaskTile"
 import TaskDetails from "../TaskDetails/TaskDetails"
@@ -125,9 +125,11 @@ function TasksContentPanel({ navExpanded }) {
 					}
 				})()}
 			</div>
-			<div className="task-list">
-				{taskListElements ? taskListElements : "No Tasks"}
-			</div>
+			{taskListElements.length > 0 ? (
+				<div className="task-list">{taskListElements}</div>
+			) : (
+				<div className="no-tasks">No tasks</div>
+			)}
 		</StyledTasksContentPanel>
 	)
 }
