@@ -1,8 +1,11 @@
-# React + Vite
+# Taskify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimalist Notion clone.
 
-Currently, two official plugins are available:
+Taskify can be used to plan and keep track of your tasks, either individually or under different projects, and take notes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Taskify is built using ReactJS and Styled Components for UI, React Router for client-side routing, Firebase as backend and Firestore as DB.
+
+# Live : [Taskify](https://rvarad-taskify.netlify.app/)
+
+### Credits : Svgs from [svgrepo.com](https://www.svgrepo.com/)
