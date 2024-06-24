@@ -79,6 +79,20 @@ background-color: var(--bg-color-2);
   background-color: var(--bg-color-4);
   box-shadow: inset var(--shadow-color-1) 1px 1px 40px 0px;
 }
+
+& .no-tasks {
+  padding: 2rem;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+& .no-tasks span {
+  font-size: 2rem;
+  color: var(--text-color-1);
+}
 `
 
 export default StyledTasksContentPanel

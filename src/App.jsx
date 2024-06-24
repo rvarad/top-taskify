@@ -22,6 +22,7 @@ import { AuthContextProvider } from "./context/AuthContext"
 const LazySignUp = lazy(() => import("./pages/SignUp/SignUp"))
 import { TasksContextProvider } from "./context/TasksContext"
 import { NotesContextProvider } from "./context/NotesContext"
+import Loading from "./components/Loading/Loading"
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -29,7 +30,7 @@ const router = createBrowserRouter(
 			<Route
 				index
 				element={
-					<Suspense fallback="loading">
+					<Suspense fallback={<Loading />}>
 						<TasksContextProvider>
 							<LazyTasks />
 						</TasksContextProvider>
@@ -39,7 +40,7 @@ const router = createBrowserRouter(
 			<Route
 				path="notes"
 				element={
-					<Suspense fallback="loading">
+					<Suspense fallback={<Loading />}>
 						<NotesContextProvider>
 							<LazyNotes />
 						</NotesContextProvider>
@@ -68,11 +69,11 @@ const router = createBrowserRouter(
 
 function App() {
 	return (
-		<Suspense fallback="loading">
-			<AuthContextProvider>
-				<RouterProvider router={router} />
-			</AuthContextProvider>
-		</Suspense>
+		// <Suspense fallback="loading">
+		<AuthContextProvider>
+			<RouterProvider router={router} />
+		</AuthContextProvider>
+		// </Suspense>
 	)
 }
 

@@ -120,7 +120,9 @@ function Notes() {
 			{notes && notes.length > 0 ? (
 				<div className="notes-grid">{notesListElements}</div>
 			) : (
-				<div className="no-notes">No Notes</div>
+				<div className="no-notes">
+					<span>No Notes</span>
+				</div>
 			)}
 		</StyledNotes>
 	)

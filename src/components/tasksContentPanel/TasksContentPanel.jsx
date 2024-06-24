@@ -128,7 +128,9 @@ function TasksContentPanel({ navExpanded }) {
 			{taskListElements.length > 0 ? (
 				<div className="task-list">{taskListElements}</div>
 			) : (
-				<div className="no-tasks">No tasks</div>
+				<div className="no-tasks">
+					<span>No tasks</span>
+				</div>
 			)}
 		</StyledTasksContentPanel>
 	)

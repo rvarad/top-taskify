@@ -76,6 +76,20 @@ background-color: var(--bg-color-2);
   column-gap: 2%;
   overflow-y: scroll;
 }
+
+& .no-notes {
+  padding: 2rem;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+& .no-notes span {
+  font-size: 2rem;
+  color: var(--text-color-1);
+}
 `
 
 export default StyledNotes
