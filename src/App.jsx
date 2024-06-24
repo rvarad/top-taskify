@@ -69,11 +69,11 @@ const router = createBrowserRouter(
 
 function App() {
 	return (
-		// <Suspense fallback="loading">
-		<AuthContextProvider>
-			<RouterProvider router={router} />
-		</AuthContextProvider>
-		// </Suspense>
+		<Suspense fallback={<Loading />}>
+			<AuthContextProvider>
+				<RouterProvider router={router} />
+			</AuthContextProvider>
+		</Suspense>
 	)
 }
 
