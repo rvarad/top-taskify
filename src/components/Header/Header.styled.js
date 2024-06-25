@@ -230,6 +230,10 @@ box-shadow: 0 5px 5px -3px var(--accent-color);
   box-shadow: 0px 7px 29px 0px var(--shadow-color-1);
 }
 
+& .mini-account .profile-popup.active {
+  display: flex;
+}
+
 & .mini-account .profile-popup .greeting {
   width: 100%;
   height: 25%;

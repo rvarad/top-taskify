@@ -1,14 +1,18 @@
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import StyledHeader from "./Header.styled"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useAuthContext } from "../../context/AuthContext"
-import { authSignOut } from "../../firebaseSetup"
 
 function Header({ theme, setTheme }) {
 	const { currentUser, profileImg, authSignOut } = useAuthContext()
 	const themeSelectionMenuRef = useRef(null)
 	const profilePopupRef = useRef(null)
 	const navigate = useNavigate()
+
+	const [menuActive, setMenuActive] = useState({
+		themeMenu: false,
+		profilePopup: false,
+	})
 
 	// console.log(currentUse
 
@@ -122,33 +126,41 @@ function Header({ theme, setTheme }) {
 	// 	if (profilePopupRef.current) profilePopupRef.current.style.display = "none"
 	// }
 
+	function toggleThemeSelectionMenu() {
+		setMenuActive((prev) => ({ ...prev, themeMenu: !prev.themeMenu }))
+	}
+
+	function toggleProfilePopup() {
+		console.log("clicked", menuActive)
+		setMenuActive((prev) => ({ ...prev, profilePopup: !prev.profilePopup }))
+	}
+
 	function handleThemeInputChange(value) {
 		// setNewTheme(value)
 		setTheme(value)
-		themeSelectionMenuRef.current.hidden = true
-		// toggleThemeSelectionMenu()
+		toggleThemeSelectionMenu()
 	}
 
 	function handleSignOut() {
 		authSignOut()
-		profilePopupRef.current.style.display = "none"
-		// toggleProfilePopup()
+		toggleProfilePopup()
 		navigate("/")
 	}
 
 	useEffect(() => {
 		const handler = (e) => {
 			if (
-				!themeSelectionMenuRef.current.hidden &&
+				menuActive.themeMenu &&
 				!themeSelectionMenuRef.current.contains(e.target)
 			) {
-				themeSelectionMenuRef.current.hidden = true
+				setMenuActive((prev) => ({ ...prev, themeMenu: false }))
 			} else if (
-				profilePopupRef.current &&
-				!profilePopupRef.current.hidden &&
+				menuActive.profilePopup &&
 				!profilePopupRef.current.contains(e.target)
 			) {
-				profilePopupRef.current.style.display = "none"
+				console.log("in useEffec")
+				// profilePopupRef.current.style.display = "none"
+				setMenuActive((prev) => ({ ...prev, profilePopup: false }))
 			}
 		}
 
@@ -211,17 +223,12 @@ function Header({ theme, setTheme }) {
 			<div className="right">
 				<div
 					className="theme-switch"
-					onClick={() =>
-						(themeSelectionMenuRef.current.hidden =
-							!themeSelectionMenuRef.current.hidden)
-					}
+					ref={themeSelectionMenuRef}
+					onClick={toggleThemeSelectionMenu}
 					// onClick={toggleThemeSelectionMenu}
 				>
 					<button>{themeIcons[theme]}</button>
-					<ul
-						ref={themeSelectionMenuRef}
-						hidden
-					>
+					<ul hidden={!menuActive.themeMenu}>
 						<li>
 							<input
 								type="radio"
@@ -264,16 +271,13 @@ function Header({ theme, setTheme }) {
 					</ul>
 				</div>
 				{currentUser ? (
-					<div className="mini-account">
+					<div
+						className="mini-account"
+						ref={profilePopupRef}
+					>
 						<button
 							className="mini-profile-pic"
-							onClick={() => {
-								// toggleProfilePopup()
-								profilePopupRef.current.style.display =
-									profilePopupRef.current.style.display === "flex"
-										? "none"
-										: "flex"
-							}}
+							onClick={toggleProfilePopup}
 						>
 							{profileImg ? (
 								<img
@@ -293,18 +297,16 @@ function Header({ theme, setTheme }) {
 							)}
 						</button>
 						<div
-							className="profile-popup"
-							// hidden
-							ref={profilePopupRef}
+							className={`profile-popup ${
+								menuActive.profilePopup ? "active" : ""
+							}`}
 						>
 							<p className="greeting">Hi, {currentUser.displayName}!</p>
 							<div className="options">
 								<Link to={"account"}>
 									<button
 										id="accountBtn"
-										onClick={() =>
-											(profilePopupRef.current.style.display = "none")
-										}
+										onClick={toggleProfilePopup}
 									>
 										Manage your Account
 									</button>
