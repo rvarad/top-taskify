@@ -23,10 +23,14 @@ const LazySignUp = lazy(() => import("./pages/SignUp/SignUp"))
 import { TasksContextProvider } from "./context/TasksContext"
 import { NotesContextProvider } from "./context/NotesContext"
 import Loading from "./components/Loading/Loading"
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary"
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
-		<Route element={<Layout />}>
+		<Route
+			element={<Layout />}
+			errorElement={<ErrorBoundary />}
+		>
 			<Route
 				index
 				element={
