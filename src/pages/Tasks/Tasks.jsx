@@ -7,11 +7,6 @@ import TasksContentPanel from "../../components/tasksContentPanel/TasksContentPa
 import { ThemeProvider } from "styled-components"
 
 function Tasks() {
-	// const [tasks, setTasks] = useState(
-	// 	JSON.parse(localStorage.getItem("tasks")) || initialTasks
-	// )
-	// // const [projDeleted, setProjDeleted] = useState(false)
-	// const [currentTab, setCurrentTab] = useState("All Tasks")
 	const {
 		tasks,
 		currentTab,
@@ -23,6 +18,7 @@ function Tasks() {
 	const [newProjectName, setNewProjectName] = useState("")
 	const [addNewProjectFormState, setAddNewProjectFormState] = useState(false)
 	const [navExpanded, setNavExpanded] = useState(true)
+	const [isSmallscreen, setIsSmallScreen] = useState()
 
 	const draggedItem = useRef(null)
 	const draggedToItem = useRef(null)
@@ -74,6 +70,22 @@ function Tasks() {
 		setNewProjectName("")
 	}, [tasks.projects.length])
 
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth > 768) {
+				setIsSmallScreen(false)
+			} else if (window.innerWidth <= 768) {
+				setIsSmallScreen(true)
+			}
+		}
+
+		window.addEventListener("resize", handleResize)
+
+		return () => {
+			window.removeEventListener("resize", handleResize)
+		}
+	})
+
 	return (
 		<StyledTasks
 			className="main"
@@ -87,10 +99,9 @@ function Tasks() {
 							id="retractNavbarBtn"
 							onClick={() => {
 								setNavExpanded((prev) => !prev)
-								console.log(navExpanded)
 							}}
 						>
-							{navExpanded ? (
+							{navExpanded && !isSmallscreen ? (
 								<svg
 									viewBox="0 0 32 32"
 									version="1.1"
@@ -109,22 +120,24 @@ function Tasks() {
 									</g>
 								</svg>
 							) : (
-								<svg
-									viewBox="0 0 32 32"
-									version="1.1"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<g
-										id="Icon-Set-Filled"
-										transform="translate(-102.000000, -1089.000000)"
-										// fill="#000000"
+								!isSmallscreen && (
+									<svg
+										viewBox="0 0 32 32"
+										version="1.1"
+										xmlns="http://www.w3.org/2000/svg"
 									>
-										<path
-											d="M122.536,1105.88 L114.879,1113.54 C114.488,1113.93 113.855,1113.93 113.464,1113.54 C113.074,1113.14 113.074,1112.51 113.464,1112.12 L120.586,1105 L113.464,1097.88 C113.074,1097.49 113.074,1096.86 113.464,1096.46 C113.855,1096.07 114.488,1096.07 114.879,1096.46 L122.536,1104.12 C122.775,1104.36 122.85,1104.69 122.795,1105 C122.85,1105.31 122.775,1105.64 122.536,1105.88 L122.536,1105.88 Z M118,1089 C109.164,1089 102,1096.16 102,1105 C102,1113.84 109.164,1121 118,1121 C126.836,1121 134,1113.84 134,1105 C134,1096.16 126.836,1089 118,1089 L118,1089 Z"
-											id="chevron-right-circle"
-										></path>
-									</g>
-								</svg>
+										<g
+											id="Icon-Set-Filled"
+											transform="translate(-102.000000, -1089.000000)"
+											// fill="#000000"
+										>
+											<path
+												d="M122.536,1105.88 L114.879,1113.54 C114.488,1113.93 113.855,1113.93 113.464,1113.54 C113.074,1113.14 113.074,1112.51 113.464,1112.12 L120.586,1105 L113.464,1097.88 C113.074,1097.49 113.074,1096.86 113.464,1096.46 C113.855,1096.07 114.488,1096.07 114.879,1096.46 L122.536,1104.12 C122.775,1104.36 122.85,1104.69 122.795,1105 C122.85,1105.31 122.775,1105.64 122.536,1105.88 L122.536,1105.88 Z M118,1089 C109.164,1089 102,1096.16 102,1105 C102,1113.84 109.164,1121 118,1121 C126.836,1121 134,1113.84 134,1105 C134,1096.16 126.836,1089 118,1089 L118,1089 Z"
+												id="chevron-right-circle"
+											></path>
+										</g>
+									</svg>
+								)
 							)}
 						</button>
 					</div>

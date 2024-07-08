@@ -26,6 +26,7 @@ function AccountPage() {
 	const [selectedImg, setSelectedImg] = useState()
 	// const [profileImg, setProfileImg] = useState()
 	const [uploadImg, setUploadImg] = useState(false)
+	const [submissionError, setSubmissionError] = useState()
 
 	// console.log(currentUser)
 
@@ -42,10 +43,19 @@ function AccountPage() {
 	})
 
 	async function handleFormSubmit(data) {
-		const uid = currentUser.uid
-		// console.log(uid)
-		await addUserInfoToDB(uid, data.firstName, data.lastName, data.displayName)
-		setFormEdit(false)
+		try {
+			const uid = currentUser.uid
+			// console.log(uid)
+			await addUserInfoToDB(
+				uid,
+				data.firstName,
+				data.lastName,
+				data.displayName
+			)
+			setFormEdit(false)
+		} catch (error) {
+			setSubmissionError(error.message)
+		}
 	}
 
 	function handleImageSelection(e) {
@@ -61,6 +71,11 @@ function AccountPage() {
 		)
 		setProfileImg(photoURL)
 		console.log(photoURL)
+		setUploadImg(false)
+	}
+
+	function cancelUpload() {
+		setSelectedImg(null)
 		setUploadImg(false)
 	}
 
@@ -131,20 +146,31 @@ function AccountPage() {
 						</label>
 						<input
 							type="file"
+							accept="image/*"
 							onChange={(e) => handleImageSelection(e)}
 							id="profilePictureInput"
 						/>
 						{uploadImg && (
-							<button
-								onClick={uploadImage}
-								id="profilePictureUploadBtn"
-							>
-								Choose this image
-							</button>
+							<div className="uploadProfilePicOptions">
+								<button
+									onClick={uploadImage}
+									id="profilePictureUploadBtn"
+								>
+									Choose this image
+								</button>
+								<button
+									onClick={cancelUpload}
+									id="profilePictureUploadCancelBtn"
+								>
+									Cancel
+								</button>
+							</div>
 						)}
 					</div>
 					<form onSubmit={handleSubmit(handleFormSubmit)}>
-						<div className="submission-errors"></div>
+						<div className="submission-errors">
+							{submissionError ? "Submission Error" : ""}
+						</div>
 						<div className="input-wrapper">
 							<label htmlFor="firstNameInput">First Name : </label>
 							<input

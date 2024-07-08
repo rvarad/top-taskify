@@ -45,9 +45,9 @@ function SignUp() {
 				</div>
 				<form onSubmit={handleSubmit(handleFormSubmit)}>
 					<div className="submission-error">
-						{/* {submissionErrors === "Firebase: Error (auth/invalid-credential)."
+						{submissionErrors === "Firebase: Error (auth/invalid-credential)."
 							? "Invalid Credentials"
-							: submissionErrors} */}
+							: submissionErrors}
 						{/* submission error */}
 					</div>
 					{/* <div className="input-wrapper">

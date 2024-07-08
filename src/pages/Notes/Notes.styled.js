@@ -72,8 +72,7 @@ background-color: var(--bg-color-2);
   grid-template-columns: repeat(2, 49%);
   justify-items: center;
   align-items: center;
-  row-gap: 1rem;
-  column-gap: 2%;
+  grid-gap: 1rem;
   overflow-y: scroll;
 }
 
@@ -89,6 +88,12 @@ background-color: var(--bg-color-2);
 & .no-notes span {
   font-size: 2rem;
   color: var(--text-color-1);
+}
+
+@media (max-width: 768px) {
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }  
 }
 `
 

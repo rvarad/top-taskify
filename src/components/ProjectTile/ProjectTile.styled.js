@@ -16,12 +16,6 @@ align-items: center;
 
 & .project-info {
   padding: 0.25rem;
-  /* width: 75%; */
-  /* min-height: 100%; */
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
 }
 
 & .project-info input {
@@ -31,7 +25,6 @@ align-items: center;
   font-size: 1.12rem;
   border: none;
   background-color: transparent;
-  /* border: ${({ renameProjectState }) => (renameProjectState ? "1px solid black" : "none")}; */
   cursor: pointer;
 }
 
@@ -41,7 +34,7 @@ align-items: center;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 & .project-info .project-options button {
@@ -71,32 +64,19 @@ align-items: center;
   fill: red;
 }
 
-/* & div svg {
-  width: 2rem;
-  margin-right: 0.5rem;
-  fill: rgb(55, 73, 88);
-}
+@media (max-width: 768px) {
+  & .project-info .project-options button {
+    width: 3rem;
+    color: var(--text-color-1);
+    background-color: transparent;
+    border: none;
+  }
 
-& div .project-name {
-  width: 75%;
-  font-size: 1.12rem;
+  & .project-info {
+    padding: 0.25rem;
+    width: 85%;
+  }
 }
-
-& .project-options {
-  padding: 0.5rem;
-  width: 75%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  border: 1px solid black;
-}
-
-& .project-options button {
-  padding: 0.2rem 0;
-  width: 40%;
-  font-size: 0.8rem;
-} */
 `
 
 export default StyledProjectTile

@@ -58,6 +58,14 @@ border-radius: 1.5rem;
 & .task-details-popup_close-btn svg {
   fill: red;
 }
+
+@media (max-width: 768px) {
+  font-size: .9rem;
+
+  & .task-details-popup_task-title {
+    font-size: 1.1rem;
+  }
+}
 `
 
 export default StyledTaskDetails

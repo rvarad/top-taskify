@@ -8,13 +8,10 @@ display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: space-between;
-/* background-color: white; */
-/* color: ${({ $completed }) => ($completed ? "var(--text-color-2)" : "var(--text-colo-1)")}; */
 border: 1px solid var(--text-color-1);
 border-left: 5px solid ${({ $priority }) => (
     $priority === "high" ? "red" : $priority === "medium" ? "orange" : "green"
   )};
-/* border-left-width: 4px; */
 
 &:hover {
   background-color: var(--bg-color-1);
@@ -39,6 +36,7 @@ border-left: 5px solid ${({ $priority }) => (
 & .task_details-btn {
   height: 100%;
   width: 2rem;
+  display: flex;
 }
 
 & .task_details-btn svg path, .task_important svg path, .task_edit svg path, .task_delete svg path {
@@ -61,6 +59,26 @@ border-left: 5px solid ${({ $priority }) => (
 & .task_important svg, .task_edit svg, .task_delete svg {
   height: 100%;
   width: 2rem;
+}
+
+@media (max-width: 768px) {
+  & .task_title {
+    width: 35%;
+    font-size: 1rem;
+    text-decoration: ${({ $completed }) => ($completed ? "line-through" : "none")};
+  }
+
+  & .task_details-btn svg, .task_important svg, .task_edit svg, .task_delete svg {
+    height: 100%;
+    width: 1.6rem;
+  }
+
+  & .task_due-date {
+    padding: 0 .3rem;
+    width: 20%;
+    text-align: center;
+    font-size: .8rem;
+  }
 }
 `
 

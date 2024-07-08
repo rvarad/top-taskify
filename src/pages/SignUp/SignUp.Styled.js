@@ -103,6 +103,32 @@ background-color: var(--bg-color-2);
 & #submitBtn:hover {
   background-color: var(--bg-color-1);
 }
+
+@media (max-width: 768px) {
+  & .form-wrapper {
+    width: 90%;
+  }
+
+  & .form-wrapper .heading span {
+    font-size: 1.5rem;
+  }
+
+  & .form-wrapper form .input-wrapper label {
+    font-size: .9rem;
+  }
+
+  & .form-wrapper form .input-wrapper input {
+    font-size: 1rem;
+  }
+
+  & .form-wrapper form .input-wrapper .errors {
+    font-size: .7rem;
+  }
+
+  & .form-wrapper form #submitBtn {
+    font-size: 1rem;
+  }
+}
 `
 
 export default StyledSignUp

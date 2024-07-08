@@ -128,6 +128,41 @@ background-color: var(--bg-color-2);
   color: var(--accent-color);
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+  & .form-wrapper {
+    height: 80%;
+    width: 90%;
+  }
+
+  & .form-wrapper .heading span {
+    font-size: 1.5rem;
+  }
+
+  & .form-wrapper form .input-wrapper label {
+    font-size: .9rem;
+  }
+
+  & .form-wrapper form .input-wrapper input {
+    font-size: 1rem;
+  }
+
+  & .form-wrapper form .input-wrapper .errors {
+    font-size: .7rem;
+  }
+
+  & #signInBtn {
+    font-size: 1rem;
+  }
+
+  & .form-wrapper form .options .signup span {
+    font-size: .7rem;
+  }
+
+  & .form-wrapper form .options .signup a {
+    font-size: .9rem;
+  }
+}
 `
 
 export default StyledSignIn

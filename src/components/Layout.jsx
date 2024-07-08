@@ -18,7 +18,6 @@ function Layout() {
 		localStorage.setItem("theme", JSON.stringify(newTheme))
 	}
 	return (
-		// <div className="site-wrapper">
 		<ThemeProvider
 			theme={
 				theme === "dark"
@@ -38,7 +37,6 @@ function Layout() {
 				<Footer />
 			</>
 		</ThemeProvider>
-		// </div>
 	)
 }
 

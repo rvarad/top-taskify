@@ -15,7 +15,7 @@ box-shadow: 0 5px 5px -3px var(--accent-color);
 
 & .left {
   height: 100%;
-  width: 25%;
+  /* width: 25%; */
   display: flex;
   align-items: center;
 }
@@ -73,7 +73,7 @@ box-shadow: 0 5px 5px -3px var(--accent-color);
 
 & .right {
   height: 100%;
-  width: 20%;
+  /* width: 20%; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -82,6 +82,7 @@ box-shadow: 0 5px 5px -3px var(--accent-color);
 
 & .theme-switch {
   position: relative;
+  margin-right: 1rem;
   width: 2.5rem;
   height: 2.5rem;
   display: flex;
@@ -93,6 +94,9 @@ box-shadow: 0 5px 5px -3px var(--accent-color);
   padding: .3rem;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   border-radius: 50%;
   background-color: transparent;
@@ -104,7 +108,8 @@ box-shadow: 0 5px 5px -3px var(--accent-color);
 }
 
 & .theme-switch button svg {
-  width: 100%;
+  /* width: 100%; */
+  height: 1.5rem;
 }
 
 & .theme-switch svg path, .theme-switch svg circle {
@@ -275,6 +280,31 @@ box-shadow: 0 5px 5px -3px var(--accent-color);
   color: red;
   border: 1px solid red;
   border-radius: 50px;
+}
+
+@media (max-width: 768px) {
+  & .left .logo .image {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  & .left .logo .image svg {
+    height: 100%;
+  }
+
+  & .middle a {
+    padding: 0.2rem .3rem;
+    font-size: .9rem;
+    }
+    
+  & .middle a.active {
+    font-size: 1rem;
+  }
+
+  & .right #signInBtn {
+    padding: .3rem .5rem;
+    font-size: .9rem;
+  }
 }
 `
 

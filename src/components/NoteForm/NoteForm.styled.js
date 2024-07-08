@@ -3,34 +3,67 @@ import styled from "styled-components";
 const StyledNoteForm = styled.form`
 padding: 1rem;
 height: 60%;
-width: 60%;
+width: 70%;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
+justify-content: space-between;
 background-color: var(--bg-color-1);
 border-radius: 1.5rem;
 
-& .input-wrapper {
+/* & .input-wrapper {
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+} */
+
+& .input-wrapper {
+  position: relative;
+  margin-bottom: .2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+& .input-wrapper .errors {
+  position: absolute;
+  font-size: .7rem;
+  top: 7%;
+  left: 48%;
+  background-color: red;
+  color: white;
+}
+
+& .input-wrapper label {
+  font-size: 1rem;
+  color: var(--text-color-1);
 }
 
 & .input-wrapper input, .input-wrapper textarea {
   margin-top: .1rem;
   padding: 0.2rem .4rem;
-  height: 100%;
+  width: 100%;
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: 1px solid var(--text-color-1);
+  color: var(--text-color-1);
+}
+
+/* & .input-wrapper input, .input-wrapper textarea {
+  margin-top: .1rem;
+  padding: 0.2rem .4rem;
   width: 100%;
   font-size: 1.1rem;
   color: var(--text-color-1);
   background-color: transparent;
   border: 1px solid var(--text-color-1);
-}
+} */
 
-& .input-wrapper label {
+/* & .input-wrapper label {
   color: var(--text-color-1);
   font-size: 1rem;
 }
@@ -42,19 +75,23 @@ border-radius: 1.5rem;
   top: 5px;
   background-color: red;
   color: white;
-}
+} */
 
 & .noteForm_title {
   margin-bottom: .2rem;
-  height: 15%;
+  height: 20%;
 }
 
 & .noteForm_content {
   height: 65%;
 }
 
+& .noteForm_content textarea {
+  height: 90%;
+}
+
 & .note-form_btns-wrapper {
-  height: 20%;
+  height: 15%;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -64,7 +101,7 @@ border-radius: 1.5rem;
 }
 
 & #noteForm_inputSubmitBtn, #noteForm_inputCancelBtn {
-  width: 10%;
+  /* width: 10%; */
   height: 70%;
   background-color: transparent;
   border: none;
@@ -80,6 +117,10 @@ border-radius: 1.5rem;
 
 & #noteForm_inputCancelBtn svg {
   fill: red;
+}
+
+@media (max-width:768px) {
+  height: 70%;
 }
 `
 

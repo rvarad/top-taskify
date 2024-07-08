@@ -15,22 +15,24 @@ const StyledTasks = styled.div`
   flex-direction: column;
   background-color: var(--bg-color-1);
   color: var(--text-color-1);
-  /* border-right: 1px solid var(--accent-color); */
 }
 
 & .navbar .home {
   width: 100%;
   height: 50%;
+  overflow: scroll;
 }
 
 & .navbar .home .heading {
+  position: sticky;
+  top: 0;
   padding-bottom: .6rem;
   display: flex;
   flex-direction: row;
   justify-content: ${({ $navExpanded }) => ($navExpanded ? "space-between" : "center")};
   border-bottom: solid 2px var(--text-color-1);
   width: 100%;
-  /* height: ; */
+  background-color: var(--bg-color-1);
 }
 
 & .navbar #retractNavbarBtn {
@@ -113,7 +115,6 @@ const StyledTasks = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid black; */
 }
 
 & .navbar .projects .add-new-project-form input {
@@ -149,6 +150,24 @@ const StyledTasks = styled.div`
 
 & .navbar .projects .add-new-project-form .add-new-project-form-buttons #addNewProjectForm_inputCancelBtn {
   fill: red;
+}
+
+@media (max-width: 768px) {
+  height: 200%;
+  height: ${({ $navExpanded }) => $navExpanded ? "200%" : "100%"};
+  flex-direction: column;
+
+  & .navbar {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  & .navbar .projects .add-new-project-form .add-new-project-form-buttons button {
+    width: 2rem;
+    background-color: transparent;
+    border: none;
+  }
 }
 `
 

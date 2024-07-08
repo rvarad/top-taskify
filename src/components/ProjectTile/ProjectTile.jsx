@@ -18,7 +18,6 @@ function ProjectTile({
 
 	function handleDeleteProject() {
 		deleteProject(project)
-		// changeCurrentTab("All Tasks")
 	}
 
 	useEffect(() => {
@@ -29,10 +28,6 @@ function ProjectTile({
 	})
 
 	return (
-		// <div
-		// 	className="project-tile"
-		// 	onClick={() => changeCurrentTab(project)}
-		// >
 		<StyledProjectTile
 			className={`nav-btn project-tile ${currentTab === project && "active"}`}
 			draggable={draggable}
@@ -170,30 +165,10 @@ function ProjectTile({
 								</button>
 							</>
 						)}
-						{/* <button onClick={() => setRenameProjectState(true)}>Rename</button>
-						<button onClick={handleDeleteProject}>Delete</button> */}
 					</div>
 				)}
 			</form>
-			{/* {currentTab === project && renameProjectState && (
-				<form
-					className="rename-project-form"
-					onSubmit={() => {
-						renameProject(project, newName)
-						changeCurrentTab(newName)
-					}}
-				>
-					<input
-						type="text"
-						value={newName}
-						onChange={(e) => setNewName(e.target.value)}
-					/>
-					<button>Submit</button>
-					<button onClick={() => setRenameProjectState(false)}>Cancel</button>
-				</form>
-			)} */}
 		</StyledProjectTile>
-		// </div>
 	)
 }
 

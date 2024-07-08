@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import { useTasksContext } from "../../context/TasksContext"
 import TaskTile from "../TaskTile/TaskTile"
 import TaskDetails from "../TaskDetails/TaskDetails"

@@ -27,7 +27,7 @@ border-radius: 1.5rem;
 & .input-wrapper .errors {
   position: absolute;
   font-size: .7rem;
-  top: 10%;
+  top: 7%;
   left: 48%;
   background-color: red;
   color: white;
@@ -78,12 +78,6 @@ border-radius: 1.5rem;
 }
 
 & .input-wrapper.task-form_input-priority-wrapper input {
-  /* margin: 0;
-  padding: 0;
-  position: relative;
-  left: .1rem;
-  width: .1rem;
-  height: .1rem; */
   display: none;
 }
 
@@ -143,6 +137,28 @@ border-radius: 1.5rem;
 
 & .task-form_btns-wrapper #taskForm_inputSubmitBtn svg {
   fill: green;
+}
+
+@media (max-width: 768px) {
+  font-size: .8rem;
+
+  & .input-wrapper .errors {
+    font-size: .6rem;
+  }
+
+  & .input-wrapper label {
+    font-size: .8rem;
+  }
+
+  & .input-wrapper input, .input-wrapper textarea {
+    font-size: 1rem;
+  }
+
+  & .input-wrapper.task-form_input-priority-wrapper label {
+    width: 19%;
+    font-size: .8rem;
+    font-weight: 500;
+  }
 }
 `
 

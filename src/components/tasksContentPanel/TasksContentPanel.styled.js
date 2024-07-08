@@ -93,6 +93,12 @@ background-color: var(--bg-color-2);
   font-size: 2rem;
   color: var(--text-color-1);
 }
+
+@media (max-width: 768px) {
+  width: 100%;
+  /* height: ${({ $navExpanded }) => ($navExpanded ? "75%" : "90%")}; */
+  overflow: auto;
+}
 `
 
 export default StyledTasksContentPanel
