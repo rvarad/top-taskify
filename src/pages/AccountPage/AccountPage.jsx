@@ -84,7 +84,7 @@ function AccountPage() {
 	}, [currentUser.photoURL])
 
 	return (
-		<StyledAccountPage>
+		<StyledAccountPage $formEdit={formEdit}>
 			{/* <div className="signin">Sign in</div>
 			<div className="signup">Sign up</div> */}
 			<div className="form-wrapper">

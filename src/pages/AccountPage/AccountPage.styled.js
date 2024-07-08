@@ -18,7 +18,7 @@ background-color: var(--bg-color-2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid white;
+  /* border: 1px solid white; */
 }
 
 & .form-wrapper .heading {
@@ -116,12 +116,12 @@ background-color: var(--bg-color-2);
   position: relative;
   padding: 1rem 1.5rem;
   width: 60%;
-  height: 100%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: flex-start; */
-  border: 1px solid var(--text-color-1);
+  justify-content: flex-start;
+  border: ${({ $formEdit }) => (!$formEdit ? "1px solid var(--text-color-1)" : "none")};
 }
 
 & .form-wrapper form .submission-error {
